@@ -1,0 +1,133 @@
+/* ==========================================================================
+   POCKETWISE MAIN APPLICATION LAYOUT
+   ========================================================================== */
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+  position: relative;
+}
+
+.dashboard-main,
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: #f8fafc;
+}
+
+.dashboard-wrapper,
+.dashboard-content {
+  flex: 1;
+  padding: 32px;
+  max-width: 1540px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Page Headers */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 850;
+  color: var(--slate-900);
+  letter-spacing: -0.5px;
+}
+
+.page-header p {
+  font-size: 14px;
+  color: var(--slate-500);
+  margin-top: 4px;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--slate-900);
+  letter-spacing: -0.3px;
+  margin-bottom: 16px;
+}
+
+/* Common Layout Helpers */
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Mobile Media Queries */
+@media (max-width: 1024px) {
+  .dashboard-wrapper,
+  .dashboard-content {
+    padding: 24px 20px;
+    gap: 22px;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .dashboard-wrapper,
+  .dashboard-content {
+    padding: 18px 14px;
+    gap: 18px;
+  }
+
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

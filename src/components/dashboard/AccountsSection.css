@@ -1,0 +1,237 @@
+/* ==========================================================================
+   ACCOUNTS SECTION & ACCOUNT CARDS STYLES
+   ========================================================================== */
+
+.accounts-section-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.accounts-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accounts-section-header h3 {
+  font-size: 19px;
+  font-weight: 850;
+  color: var(--slate-900);
+  margin: 0;
+}
+
+.accounts-section-header p {
+  font-size: 13px;
+  color: var(--slate-500);
+  margin: 2px 0 0;
+}
+
+.section-add-account-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 750;
+  border: 1px solid #c7d2fe;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.section-add-account-btn:hover {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+/* Grid */
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+/* Account Card */
+.dashboard-account-card {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  padding: 22px;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--slate-200);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  transition: var(--transition-normal);
+  position: relative;
+}
+
+.dashboard-account-card:hover {
+  transform: translateY(-3px);
+  border-color: #cbd5e1;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09);
+}
+
+.dashboard-account-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: #f1f5f9;
+  border: 1px solid var(--slate-200);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
+
+.dashboard-account-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.acc-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--slate-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.acc-action-btn:hover {
+  background: var(--slate-200);
+  transform: scale(1.05);
+}
+
+.acc-action-btn.delete-btn:hover {
+  background: var(--danger-light);
+}
+
+.dashboard-account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 12px 0 8px;
+}
+
+.account-name-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--slate-500);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.account-balance-amount {
+  font-size: 28px;
+  font-weight: 850;
+  color: var(--slate-900);
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+
+/* Mini Budget Progress */
+.acc-mini-budget {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--slate-200);
+}
+
+.acc-budget-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--slate-500);
+}
+
+.acc-budget-track {
+  width: 100%;
+  height: 6px;
+  background: var(--slate-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.acc-budget-bar {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #6366f1, #4f46e5);
+  transition: width 0.4s ease;
+}
+
+.acc-budget-bar.exceeded {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.acc-no-budget small {
+  font-size: 11px;
+  color: var(--slate-400);
+  display: block;
+  padding-top: 8px;
+  border-top: 1px dashed var(--slate-100);
+}
+
+/* Add Account Card */
+.dashboard-add-account-card {
+  background: var(--slate-50);
+  border: 2px dashed #cbd5e1;
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  gap: 8px;
+}
+
+.dashboard-add-account-card:hover {
+  border-color: var(--primary);
+  background: #f5f7ff;
+  transform: translateY(-2px);
+}
+
+.add-account-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+}
+
+.dashboard-add-account-card h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--slate-900);
+  margin: 0;
+}
+
+.dashboard-add-account-card p {
+  font-size: 12px;
+  color: var(--slate-500);
+  margin: 0;
+}

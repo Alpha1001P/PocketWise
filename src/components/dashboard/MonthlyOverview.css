@@ -1,0 +1,221 @@
+/* ==========================================
+   MONTHLY OVERVIEW
+========================================== */
+
+.monthly-overview-card{
+
+    background:#ffffff;
+
+    border-radius:24px;
+
+    padding:24px;
+
+    box-shadow:0 12px 35px rgba(15,23,42,.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:330px;
+
+    transition:.25s ease;
+
+}
+
+.monthly-overview-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 18px 45px rgba(15,23,42,.12);
+
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:22px;
+
+}
+
+.card-header h2{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+.card-header p{
+
+    margin-top:5px;
+
+    color:#6b7280;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.card-action-btn{
+
+    border:none;
+
+    background:#f3f4f6;
+
+    color:#374151;
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.card-action-btn:hover{
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
+
+
+/* ==========================================
+   CHART
+========================================== */
+.chart-wrapper{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-top:25px;
+
+    min-height:230px;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+.card-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+.overview-stats{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+/* ==========================================
+   OVERVIEW STATS
+========================================== */
+
+.overview-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:14px;
+
+    margin-top:8px;
+
+}
+
+.overview-box{
+
+    background:#f8fafc;
+
+    border:1px solid #eef2f7;
+
+    border-radius:16px;
+
+    padding:16px;
+
+    transition:.25s;
+
+}
+
+.overview-box:hover{
+
+    transform:translateY(-2px);
+
+    background:#ffffff;
+
+    box-shadow:0 10px 24px rgba(15,23,42,.08);
+
+}
+
+.overview-box span{
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}
+
+.overview-box h3{
+
+    margin-top:8px;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+.month-chip{
+
+    background:#eef2ff;
+
+    color:#4338ca;
+
+    padding:9px 16px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}

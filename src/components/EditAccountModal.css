@@ -1,0 +1,209 @@
+/* ==========================================================================
+   ACCOUNT MODALS STYLING (ADD / EDIT)
+   ========================================================================== */
+
+.account-modal-box {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 25px 65px rgba(15, 23, 42, 0.25);
+  border: 1px solid var(--slate-200);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: accountModalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes accountModalPop {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Header */
+.modal-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.modal-box-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.box-icon-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+  background: var(--primary-light);
+  border: 1px solid #c7d2fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.modal-box-title h3 {
+  font-size: 19px;
+  font-weight: 850;
+  color: var(--slate-900);
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.modal-box-title p {
+  font-size: 13px;
+  color: var(--slate-500);
+  margin: 2px 0 0;
+}
+
+.close-modal-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: var(--slate-100);
+  color: var(--slate-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.close-modal-btn:hover {
+  background: var(--danger-light);
+  color: var(--danger);
+  transform: rotate(90deg);
+}
+
+/* Form Body */
+.account-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--slate-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group label small {
+  text-transform: none;
+  font-weight: 500;
+  color: var(--slate-400);
+}
+
+.form-group input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--slate-900);
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.form-group input:focus {
+  background: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-ring);
+}
+
+/* Icon Grid */
+.icon-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.icon-pill-btn {
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.icon-pill-btn:hover {
+  background: #f1f5f9;
+  border-color: var(--slate-300);
+  transform: translateY(-1px);
+}
+
+.icon-pill-btn.active {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-ring);
+}
+
+/* Footer Actions */
+.modal-box-footer {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.modal-btn-cancel {
+  flex: 1;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--slate-100);
+  color: var(--slate-700);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.modal-btn-cancel:hover {
+  background: var(--slate-200);
+}
+
+.modal-btn-create {
+  flex: 2;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 750;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.28);
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.modal-btn-create:hover {
+  box-shadow: 0 8px 22px rgba(79, 70, 229, 0.38);
+  transform: translateY(-1px);
+}

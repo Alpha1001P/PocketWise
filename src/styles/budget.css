@@ -1,0 +1,295 @@
+/* ==========================
+   BUDGET PLANNER
+========================== */
+
+.budget-card{
+    width:100%;
+    max-width:900px;
+    background:#fff;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
+
+/* Top */
+
+.budget-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.budget-top h1{
+    font-size:30px;
+    font-weight:700;
+    color:#1e293b;
+}
+
+.budget-date{
+    color:#64748b;
+    margin-top:6px;
+    font-size:15px;
+}
+
+/* Save Button */
+
+.budget-btn{
+    background:#6366f1;
+    color:#fff;
+    border:none;
+    padding:13px 28px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.budget-btn:hover{
+    background:#4f46e5;
+    transform:translateY(-2px);
+}
+
+/* Summary */
+
+.summary-title{
+    color:#64748b;
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.summary-amount{
+    font-size:42px;
+    font-weight:700;
+    color:#111827;
+    margin-bottom:30px;
+}
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.summary-box{
+    background:#f8fafc;
+    border-radius:14px;
+    padding:22px;
+    text-align:center;
+    transition:.3s;
+}
+
+.summary-box:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+.summary-box p{
+    color:#64748b;
+    font-size:14px;
+    margin-bottom:8px;
+}
+
+.summary-box h3{
+    font-size:26px;
+    font-weight:700;
+    color:#111827;
+}
+
+/* Progress */
+
+.budget-progress-section{
+    margin:35px 0;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+    font-weight:600;
+    color:#374151;
+}
+
+.progress-container{
+    width:100%;
+    height:16px;
+    background:#e5e7eb;
+    border-radius:30px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    border-radius:30px;
+    transition:.5s;
+}
+
+.progress-bar.safe{
+    background:#22c55e;
+}
+
+.progress-bar.warning{
+    background:#f59e0b;
+}
+
+.progress-bar.danger{
+    background:#ef4444;
+}
+
+.remaining-text{
+    margin-top:12px;
+    color:#16a34a;
+    font-weight:600;
+}
+
+.exceeded-text{
+    margin-top:12px;
+    color:#dc2626;
+    font-weight:700;
+}
+
+/* Sections */
+
+.budget-section{
+    margin-top:35px;
+}
+
+.section-title{
+    display:block;
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:18px;
+    color:#111827;
+}
+
+/* Monthly Input */
+
+.budget-main-input{
+    width:100%;
+    height:54px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    padding:0 18px;
+    font-size:17px;
+    transition:.3s;
+}
+
+.budget-main-input:focus{
+    outline:none;
+    border-color:#6366f1;
+    box-shadow:0 0 0 4px rgba(99,102,241,.15);
+}
+
+/* Category Rows */
+
+.budget-input{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#f8fafc;
+    padding:16px 20px;
+    border-radius:14px;
+    margin-bottom:14px;
+    transition:.25s;
+}
+
+.budget-input:hover{
+    background:#eef2ff;
+}
+
+.budget-category{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:16px;
+    font-weight:600;
+    color:#1f2937;
+}
+
+.budget-icon{
+    font-size:22px;
+}
+
+.budget-input input{
+    width:190px;
+    height:46px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    padding:0 14px;
+    text-align:right;
+    font-size:16px;
+    transition:.3s;
+}
+
+.budget-input input:focus{
+    outline:none;
+    border-color:#6366f1;
+    box-shadow:0 0 0 4px rgba(99,102,241,.12);
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.summary-grid{
+    grid-template-columns:1fr;
+}
+
+.budget-top{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:18px;
+}
+
+.budget-btn{
+    width:100%;
+}
+
+.budget-input{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.budget-input input{
+    width:100%;
+}
+
+}
+.budget-category-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.budget-category-name{
+    font-size:16px;
+    font-weight:600;
+    color:#1f2937;
+}
+
+.category-limit{
+    color:#6b7280;
+    font-size:12px;
+    margin-top:2px;
+}
+.budget-option{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    padding:12px 16px;
+    border:none;
+    background:transparent;
+    color:#374151;
+    font-size:14px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.budget-option:hover{
+    background:#eef2ff;
+    color:#4f46e5;
+}

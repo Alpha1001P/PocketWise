@@ -1,0 +1,12 @@
+.account-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  transition: 0.2s;
+  position: relative;
+}
+
+.account-item:hover {
+  background: #f8fafc;
+}

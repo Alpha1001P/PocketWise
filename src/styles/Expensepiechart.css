@@ -1,0 +1,1048 @@
+/* =========================================================
+   REPORTS — EXPENSE BY CATEGORY
+   PREMIUM DIRECT CARD
+========================================================= */
+
+.reports-expense-wrapper {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   MONTH SELECTOR
+========================================================= */
+
+.reports-month-selector {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 9px;
+
+    margin-bottom: 10px;
+}
+
+.reports-month-selector span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    color: #64748b;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.reports-month-selector select {
+    height: 34px;
+    min-width: 92px;
+
+    padding: 0 11px;
+
+    border: 1px solid #ddd6fe;
+    border-radius: 10px;
+
+    outline: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f8f7ff
+        );
+
+    color: #4f46e5;
+
+    font-size: 10px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 12px rgba(79,70,229,.06);
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+}
+
+.reports-month-selector select:hover {
+    border-color: #a5b4fc;
+
+    box-shadow:
+        0 6px 16px rgba(79,70,229,.10);
+
+    transform: translateY(-1px);
+}
+
+.reports-month-selector select:focus {
+    border-color: #6366f1;
+
+    box-shadow:
+        0 0 0 3px rgba(99,102,241,.10);
+}
+
+
+/* =========================================================
+   EXPENSE BY CATEGORY CARD
+========================================================= */
+
+.expense-chart-card {
+
+    position: relative;
+
+    min-width: 0;
+    min-height: 400px;
+
+    padding: 21px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(99,102,241,.14);
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #fbfbff 52%,
+            #f5f3ff 100%
+        );
+
+    box-shadow:
+        0 12px 30px rgba(15,23,42,.065),
+        0 2px 7px rgba(99,102,241,.035);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+
+/* Decorative top-right glow */
+
+.expense-chart-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 210px;
+    height: 210px;
+
+    top: -125px;
+    right: -85px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99,102,241,.16),
+            rgba(139,92,246,.05) 45%,
+            transparent 72%
+        );
+
+    pointer-events: none;
+}
+
+
+/* Decorative bottom-left glow */
+
+.expense-chart-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    bottom: -105px;
+    left: -90px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(139,92,246,.11),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+.expense-chart-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 20px 42px rgba(79,70,229,.11),
+        0 4px 10px rgba(15,23,42,.05);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.expense-chart-header {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+}
+
+
+.expense-chart-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    min-width: 0;
+}
+
+
+.expense-chart-icon {
+
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #ede9fe
+        );
+
+    border: 1px solid #ddd6fe;
+
+    color: #6366f1;
+
+    font-size: 20px;
+
+    box-shadow:
+        0 6px 15px rgba(99,102,241,.10);
+}
+
+
+.expense-chart-label {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #818cf8;
+
+    font-size: 8px;
+
+    font-weight: 850;
+
+    letter-spacing: .9px;
+}
+
+
+.expense-chart-heading h2 {
+
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 17px;
+
+    line-height: 1.2;
+
+    font-weight: 850;
+
+    letter-spacing: -.35px;
+}
+
+
+.expense-chart-heading p {
+
+    margin: 4px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   MONTH SELECTOR INSIDE CARD
+========================================================= */
+
+.expense-chart-header select {
+
+    position: relative;
+
+    z-index: 5;
+
+    height: 32px;
+
+    min-width: 88px;
+
+    padding: 0 9px;
+
+    border: 1px solid #ddd6fe;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #4f46e5;
+
+    font-size: 9px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 10px rgba(79,70,229,.05);
+
+    transition: .2s ease;
+}
+
+
+.expense-chart-header select:hover {
+
+    border-color: #a5b4fc;
+
+    background: #fafaff;
+}
+
+
+.expense-chart-header select:focus {
+
+    border-color: #6366f1;
+
+    box-shadow:
+        0 0 0 3px rgba(99,102,241,.10);
+}
+
+
+/* =========================================================
+   CHART AREA
+========================================================= */
+
+.expense-chart-area {
+
+    position: relative;
+
+    height: 250px;
+
+    margin-top: 7px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* Soft glow behind pie chart */
+
+.expense-chart-background {
+
+    position: absolute;
+
+    width: 210px;
+    height: 210px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99,102,241,.075),
+            rgba(139,92,246,.025) 45%,
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CHART CONTAINER
+========================================================= */
+
+.expense-chart-area .chart-container {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    height: 240px;
+
+    margin: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: transparent;
+}
+
+
+/* Chart.js canvas */
+
+.expense-chart-area canvas {
+
+    position: relative;
+
+    z-index: 3;
+
+    max-width: 100% !important;
+
+    max-height: 230px !important;
+}
+
+
+/* Recharts / SVG */
+
+.expense-chart-area svg {
+
+    position: relative;
+
+    z-index: 3;
+
+    max-width: 100%;
+
+    max-height: 230px;
+}
+
+
+/* =========================================================
+   EMPTY CHART
+========================================================= */
+
+.expense-chart-area:has(canvas:only-child) {
+    min-height: 0;
+}
+
+
+/* =========================================================
+   EXPENSE FOOTER
+========================================================= */
+
+.expense-chart-footer {
+
+    position: relative;
+
+    z-index: 3;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+    min-height: 58px;
+
+    padding: 9px 13px;
+
+    border: 1px solid #e8e7f4;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(248,250,252,.95),
+            rgba(245,243,255,.95)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.8);
+}
+
+
+.expense-footer-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    min-width: 0;
+}
+
+
+.expense-footer-item:last-child {
+
+    justify-content: flex-end;
+}
+
+
+.expense-footer-icon {
+
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #e0e7ff
+        );
+
+    color: #4f46e5;
+
+    font-size: 13px;
+}
+
+
+.expense-footer-item:last-child .expense-footer-icon {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ecfdf5,
+            #d1fae5
+        );
+}
+
+
+.expense-footer-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+
+    min-width: 0;
+}
+
+
+.expense-footer-content span {
+
+    color: #94a3b8;
+
+    font-size: 8px;
+
+    font-weight: 650;
+}
+
+
+.expense-footer-content strong {
+
+    color: #1e293b;
+
+    font-size: 12px;
+
+    line-height: 1.1;
+
+    font-weight: 850;
+}
+
+
+.expense-footer-divider {
+
+    width: 1px;
+
+    height: 30px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            #dbe1eb,
+            transparent
+        );
+}
+
+
+/* =========================================================
+   CATEGORY ANALYSIS — MATCH EXPENSE CARD
+========================================================= */
+
+.category-analysis-card {
+
+    min-height: 400px;
+
+    padding: 20px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #fafbff
+        );
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 12px 30px rgba(15,23,42,.065);
+}
+
+
+.category-analysis-header {
+
+    margin-bottom: 15px;
+}
+
+
+.category-analysis-header h2 {
+
+    margin: 0;
+
+    color: #172554;
+
+    font-size: 15px;
+
+    font-weight: 850;
+}
+
+
+.category-header-icon {
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f5f3ff
+        );
+
+    color: #6366f1;
+
+    box-shadow:
+        0 4px 12px rgba(99,102,241,.08);
+}
+
+
+/* =========================================================
+   CATEGORY ITEMS
+========================================================= */
+
+.category-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.category-item {
+
+    padding: 9px 10px;
+
+    border: 1px solid #edf0f6;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fbfcff,
+            #f8f7ff
+        );
+
+    transition: .2s ease;
+}
+
+
+.category-item:hover {
+
+    transform: translateX(3px);
+
+    border-color: #c7d2fe;
+
+    box-shadow:
+        0 5px 13px rgba(99,102,241,.06);
+}
+
+
+.category-icon {
+
+    width: 29px;
+    height: 29px;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+}
+
+
+.category-info strong {
+
+    color: #334155;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+
+.category-info small {
+
+    color: #94a3b8;
+
+    font-size: 7px;
+}
+
+
+.category-amount {
+
+    color: #4f46e5 !important;
+
+    font-size: 9px !important;
+
+    font-weight: 850 !important;
+}
+
+
+.category-progress {
+
+    width: 100%;
+
+    height: 4px;
+
+    margin-top: 7px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #e9edf5;
+}
+
+
+.category-progress-bar {
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6366f1,
+            #8b5cf6
+        );
+
+    transition: width .5s ease;
+}
+
+
+/* =========================================================
+   AI INSIGHTS — SPACING
+========================================================= */
+
+.ai-insights-card {
+
+    margin-top: 17px;
+
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .report-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .expense-chart-card,
+    .category-analysis-card {
+
+        min-height: 390px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .reports-month-selector {
+
+        justify-content: space-between;
+
+        margin-bottom: 9px;
+    }
+
+
+    .reports-month-selector select {
+
+        height: 32px;
+
+        min-width: 90px;
+    }
+
+
+    .expense-chart-card {
+
+        min-height: 380px;
+
+        padding: 17px;
+
+        border-radius: 19px;
+    }
+
+
+    .expense-chart-header {
+
+        gap: 8px;
+    }
+
+
+    .expense-chart-heading {
+
+        gap: 9px;
+    }
+
+
+    .expense-chart-icon {
+
+        width: 39px;
+        height: 39px;
+
+        border-radius: 11px;
+
+        font-size: 18px;
+    }
+
+
+    .expense-chart-label {
+
+        font-size: 7px;
+    }
+
+
+    .expense-chart-heading h2 {
+
+        font-size: 15px;
+    }
+
+
+    .expense-chart-heading p {
+
+        font-size: 8px;
+    }
+
+
+    .expense-chart-header select {
+
+        min-width: 78px;
+
+        height: 30px;
+
+        font-size: 8px;
+    }
+
+
+    .expense-chart-area {
+
+        height: 235px;
+    }
+
+
+    .expense-chart-area .chart-container {
+
+        height: 225px;
+    }
+
+
+    .expense-chart-area canvas {
+
+        max-height: 215px !important;
+    }
+
+
+    .expense-chart-footer {
+
+        min-height: 55px;
+
+        padding: 8px 10px;
+    }
+
+
+    .expense-footer-icon {
+
+        width: 27px;
+        height: 27px;
+
+        font-size: 12px;
+    }
+
+
+    .expense-footer-content span {
+
+        font-size: 7px;
+    }
+
+
+    .expense-footer-content strong {
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .expense-chart-card {
+
+        padding: 15px;
+
+        border-radius: 17px;
+    }
+
+
+    .expense-chart-header {
+
+        align-items: flex-start;
+    }
+
+
+    .expense-chart-heading h2 {
+
+        font-size: 14px;
+    }
+
+
+    .expense-chart-heading p {
+
+        font-size: 8px;
+    }
+
+
+    .expense-chart-icon {
+
+        width: 36px;
+        height: 36px;
+
+        font-size: 16px;
+    }
+
+
+    .expense-chart-header select {
+
+        min-width: 70px;
+
+        padding: 0 6px;
+    }
+
+
+    .expense-chart-area {
+
+        height: 215px;
+    }
+
+
+    .expense-chart-area .chart-container {
+
+        height: 205px;
+    }
+
+
+    .expense-chart-area canvas {
+
+        max-height: 195px !important;
+    }
+
+
+    .expense-chart-footer {
+
+        grid-template-columns: 1fr;
+
+        gap: 8px;
+
+        padding: 9px;
+    }
+
+
+    .expense-footer-item,
+    .expense-footer-item:last-child {
+
+        justify-content: flex-start;
+    }
+
+
+    .expense-footer-divider {
+
+        display: none;
+    }
+
+}

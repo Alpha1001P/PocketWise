@@ -1,0 +1,1329 @@
+/* ==========================================================================
+   POCKETWISE NAVBAR
+   Responsive: Desktop + Tablet + Mobile
+   ========================================================================== */
+
+.navbar {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  padding: 24px 32px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.05);
+
+  border: 1px solid var(--slate-200);
+
+  margin-bottom: 24px;
+
+  gap: 20px;
+
+  position: relative;
+  z-index: 80;
+
+  min-width: 0;
+}
+
+/* ==========================================================================
+   LEFT SIDE
+   ========================================================================== */
+
+.navbar-left {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.navbar-greeting-pill {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  background: var(--slate-50);
+
+  border: 1px solid var(--slate-200);
+
+  color: var(--slate-600);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  padding: 4px 10px;
+
+  border-radius: var(--radius-full);
+
+  width: fit-content;
+
+  margin-bottom: 2px;
+}
+
+.greeting-emoji {
+  font-size: 13px;
+}
+
+.navbar-title {
+  margin: 0;
+
+  font-size: 26px;
+  font-weight: 850;
+
+  color: var(--slate-900);
+
+  letter-spacing: -0.5px;
+
+  line-height: 1.2;
+}
+
+.navbar-subtitle {
+  margin: 0;
+
+  font-size: 13px;
+
+  color: var(--slate-500);
+
+  line-height: 1.5;
+
+  max-width: 600px;
+}
+
+/* ==========================================================================
+   RIGHT SIDE
+   ========================================================================== */
+
+.navbar-right {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   AI INSIGHTS BUTTON
+   ========================================================================== */
+
+.ai-insights-wrapper {
+  position: relative;
+
+  flex-shrink: 0;
+}
+
+.ai-insights-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 46px;
+
+  padding: 0 16px;
+
+  border-radius: var(--radius-md);
+
+  background: #f5f3ff;
+
+  border: 1px solid #ddd6fe;
+
+  color: #5b21b6;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ai-insights-button:hover,
+.ai-insights-button.active {
+  background: #ede9fe;
+
+  border-color: #c4b5fd;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 15px rgba(124, 58, 237, 0.12);
+}
+
+.ai-insights-icon {
+  font-size: 17px;
+
+  line-height: 1;
+}
+
+/* ==========================================================================
+   AI INSIGHTS OVERLAY
+   ========================================================================== */
+
+.ai-insights-overlay {
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.35);
+
+  z-index: 998;
+}
+
+/* ==========================================================================
+   AI INSIGHTS PANEL
+   ========================================================================== */
+
+.ai-insights-panel {
+  position: absolute;
+
+  top: 56px;
+
+  right: 0;
+
+  width: 760px;
+
+  max-width: calc(100vw - 32px);
+
+  background: var(--white);
+
+  border: 1px solid var(--slate-200);
+
+  border-radius: 20px;
+
+  padding: 22px;
+
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.16);
+
+  z-index: 1000;
+
+  animation:
+    aiInsightsPop
+    0.22s
+    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes aiInsightsPop {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(8px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+/* ==========================================================================
+   AI INSIGHTS HEADER
+   ========================================================================== */
+
+.ai-insights-header {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-bottom: 18px;
+
+  border-bottom:
+    1px solid var(--slate-100);
+}
+
+.ai-insights-heading {
+  min-width: 0;
+}
+
+.ai-insights-title-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+}
+
+.ai-title-icon {
+  font-size: 20px;
+
+  line-height: 1;
+}
+
+.ai-insights-title-row h3 {
+  margin: 0;
+
+  color: var(--slate-900);
+
+  font-size: 18px;
+
+  font-weight: 850;
+}
+
+.ai-insights-heading p {
+  margin: 5px 0 0;
+
+  color: var(--slate-500);
+
+  font-size: 12px;
+
+  line-height: 1.4;
+}
+
+.ai-insights-close {
+  width: 34px;
+
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 10px;
+
+  border: 1px solid var(--slate-200);
+
+  background: var(--slate-50);
+
+  color: var(--slate-500);
+
+  font-size: 22px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.ai-insights-close:hover {
+  background: #f1f5f9;
+
+  border-color: #cbd5e1;
+
+  color: var(--slate-900);
+}
+
+/* ==========================================================================
+   AI INSIGHTS METRICS
+   ========================================================================== */
+
+.ai-insights-metrics {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 0;
+
+  padding-top: 20px;
+}
+
+.ai-insight-metric {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  min-width: 0;
+
+  padding: 4px 22px;
+}
+
+.ai-insight-metric:first-child {
+  padding-left: 4px;
+}
+
+.ai-insight-metric:last-child {
+  padding-right: 4px;
+}
+
+.ai-insight-metric + .ai-insight-metric {
+  border-left:
+    1px solid var(--slate-200);
+}
+
+.ai-metric-icon {
+  width: 46px;
+
+  height: 46px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 13px;
+
+  font-size: 21px;
+}
+
+.ai-metric-icon.spending {
+  background: #fff1f2;
+}
+
+.ai-metric-icon.net-worth {
+  background: #ecfdf5;
+}
+
+.ai-metric-icon.savings {
+  background: #eff6ff;
+}
+
+.ai-metric-content {
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.ai-metric-label {
+  color: var(--slate-500);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.ai-metric-value {
+  margin-top: 3px;
+
+  color: var(--slate-900);
+
+  font-size: 20px;
+
+  font-weight: 850;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.ai-metric-value.negative {
+  color: #dc2626;
+}
+
+.ai-metric-period {
+  margin-top: 4px;
+
+  color: var(--slate-400);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   ADD TRANSACTION
+   ========================================================================== */
+
+.add-transaction-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #10b981 0%,
+      #059669 100%
+    );
+
+  color: var(--white);
+
+  padding: 12px 22px;
+
+  border-radius: var(--radius-md);
+
+  border: none;
+
+  font-size: 14px;
+
+  font-weight: 750;
+
+  box-shadow:
+    0 4px 14px rgba(16, 185, 129, 0.28);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+}
+
+.add-transaction-btn .btn-icon {
+  font-size: 16px;
+
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+.add-transaction-btn:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #059669 0%,
+      #047857 100%
+    );
+
+  box-shadow:
+    0 8px 20px rgba(16, 185, 129, 0.38);
+
+  transform: translateY(-2px);
+}
+
+.add-transaction-btn:active {
+  transform: translateY(0);
+}
+
+.add-transaction-btn:focus-visible,
+.notification-button:focus-visible,
+.ai-insights-button:focus-visible,
+.ai-insights-close:focus-visible {
+  outline: 3px solid rgba(16, 185, 129, 0.22);
+
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   NOTIFICATION BUTTON
+   ========================================================================== */
+
+.notification-wrapper {
+  position: relative;
+
+  flex-shrink: 0;
+}
+
+.notification-button {
+  width: 46px;
+
+  height: 46px;
+
+  border-radius: var(--radius-md);
+
+  background: var(--slate-50);
+
+  border: 1px solid var(--slate-200);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+
+  position: relative;
+}
+
+.notification-button:hover,
+.notification-button.active {
+  background: var(--primary-light);
+
+  border-color: #c7d2fe;
+
+  color: var(--primary);
+
+  transform: translateY(-1px);
+}
+
+.bell-icon {
+  line-height: 1;
+}
+
+.notification-badge {
+  position: absolute;
+
+  top: -4px;
+
+  right: -4px;
+
+  min-width: 20px;
+
+  height: 20px;
+
+  padding: 0 5px;
+
+  border-radius: 10px;
+
+  background: var(--danger);
+
+  color: var(--white);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  border: 2px solid var(--white);
+
+  box-shadow:
+    0 2px 6px rgba(239, 68, 68, 0.4);
+}
+
+/* ==========================================================================
+   NOTIFICATION OVERLAY
+   ========================================================================== */
+
+.notification-overlay {
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.35);
+
+  z-index: 999;
+}
+
+/* ==========================================================================
+   NOTIFICATION BOX
+   ========================================================================== */
+
+.notification-box {
+  position: absolute;
+
+  top: 56px;
+
+  right: 0;
+
+  width: 360px;
+
+  max-width: calc(100vw - 32px);
+
+  background: var(--white);
+
+  border-radius: var(--radius-lg);
+
+  padding: 20px;
+
+  box-shadow: var(--shadow-modal);
+
+  border: 1px solid var(--slate-200);
+
+  z-index: 1000;
+
+  animation:
+    notifPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+@keyframes notifPop {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(8px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+/* ==========================================================================
+   NOTIFICATION HEADER
+   ========================================================================== */
+
+.notification-top {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border-bottom:
+    1px solid var(--slate-100);
+
+  padding-bottom: 12px;
+}
+
+.notif-title-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.notif-title-row h3 {
+  font-size: 16px;
+
+  font-weight: 800;
+
+  color: var(--slate-900);
+
+  margin: 0;
+}
+
+.unread-pill {
+  font-size: 11px;
+
+  font-weight: 700;
+
+  background: var(--primary-light);
+
+  color: var(--primary);
+
+  padding: 2px 8px;
+
+  border-radius: var(--radius-full);
+
+  white-space: nowrap;
+}
+
+.mark-read-btn {
+  font-size: 12px;
+
+  font-weight: 700;
+
+  color: var(--primary);
+
+  background: none;
+
+  border: none;
+
+  cursor: pointer;
+
+  transition: color 0.15s;
+
+  white-space: nowrap;
+}
+
+.mark-read-btn:hover {
+  color: var(--primary-hover);
+
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   NOTIFICATION LIST
+   ========================================================================== */
+
+.notification-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  max-height: 320px;
+
+  overflow-y: auto;
+}
+
+.notification-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.notification-list::-webkit-scrollbar-thumb {
+  background: var(--slate-200);
+
+  border-radius: 10px;
+}
+
+.notification-item {
+  padding: 12px 14px;
+
+  border-radius: var(--radius-md);
+
+  background: var(--slate-50);
+
+  border: 1px solid var(--slate-200);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.notification-item:hover {
+  background: #f1f5f9;
+}
+
+.notification-item.unread {
+  background: var(--primary-light);
+
+  border-color: #c7d2fe;
+
+  border-left:
+    4px solid var(--primary);
+}
+
+.notif-item-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.notif-item-header strong {
+  font-size: 13px;
+
+  color: var(--slate-900);
+}
+
+.notif-item-header small {
+  font-size: 11px;
+
+  color: var(--slate-400);
+
+  white-space: nowrap;
+}
+
+.notification-item p {
+  font-size: 12px;
+
+  color: var(--slate-600);
+
+  margin: 0;
+
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   EMPTY NOTIFICATIONS
+   ========================================================================== */
+
+.empty-notification {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 28px 12px;
+
+  text-align: center;
+
+  gap: 6px;
+}
+
+.empty-icon {
+  font-size: 32px;
+
+  margin-bottom: 4px;
+}
+
+.empty-notification p {
+  font-size: 14px;
+
+  font-weight: 700;
+
+  color: var(--slate-700);
+
+  margin: 0;
+}
+
+.empty-notification small {
+  font-size: 12px;
+
+  color: var(--slate-400);
+
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   CLEAR BUTTON
+   ========================================================================== */
+
+.clear-notification {
+  width: 100%;
+
+  padding: 10px;
+
+  border-radius: var(--radius-md);
+
+  background: var(--slate-50);
+
+  border: 1px solid var(--slate-200);
+
+  color: var(--danger);
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.clear-notification:hover {
+  background: var(--danger-light);
+
+  border-color: var(--danger-border);
+}
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+  .navbar {
+    padding: 20px 24px;
+  }
+
+  .navbar-title {
+    font-size: 23px;
+  }
+
+  .navbar-subtitle {
+    font-size: 12px;
+  }
+
+  .navbar-right {
+    gap: 9px;
+  }
+
+  .ai-insights-button {
+    padding: 0 13px;
+  }
+
+  .add-transaction-btn {
+    padding: 11px 17px;
+
+    font-size: 13px;
+  }
+
+  .ai-insights-panel {
+    width: 680px;
+  }
+
+  .ai-insight-metric {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+/* ==========================================================================
+   TABLET / SMALL DESKTOP
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .ai-insights-button-text {
+    display: none;
+  }
+
+  .ai-insights-button {
+    width: 46px;
+
+    padding: 0;
+  }
+
+  .ai-insights-panel {
+    width: 620px;
+  }
+}
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 700px) {
+  /*
+    Leave room on the left for the Sidebar ☰ button.
+  */
+
+  .navbar {
+    width: 100%;
+
+    padding:
+      18px
+      18px
+      18px
+      72px;
+
+    margin-bottom: 18px;
+
+    border-radius: 18px;
+
+    gap: 16px;
+
+    align-items: stretch;
+  }
+
+  .navbar-left {
+    width: 100%;
+  }
+
+  .navbar-greeting-pill {
+    font-size: 11px;
+
+    padding: 4px 9px;
+  }
+
+  .navbar-title {
+    font-size: 22px;
+
+    letter-spacing: -0.3px;
+  }
+
+  .navbar-subtitle {
+    font-size: 12px;
+
+    line-height: 1.45;
+
+    max-width: 100%;
+  }
+
+  .navbar-right {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 8px;
+  }
+
+  .ai-insights-wrapper {
+    flex: 1;
+
+    min-width: 0;
+  }
+
+  .ai-insights-button {
+    width: 100%;
+
+    height: 44px;
+
+    min-height: 44px;
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    gap: 7px;
+  }
+
+  .ai-insights-button-text {
+    display: inline;
+  }
+
+  .add-transaction-btn {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 44px;
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+  }
+
+  .notification-button {
+    width: 44px;
+
+    height: 44px;
+
+    flex-shrink: 0;
+  }
+
+  /*
+    AI Insights becomes a centered mobile panel.
+  */
+
+  .ai-insights-overlay {
+    display: block;
+  }
+
+  .ai-insights-panel {
+    position: fixed;
+
+    top: 82px;
+
+    left: 16px;
+
+    right: 16px;
+
+    width: auto;
+
+    max-width: none;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    z-index: 1001;
+  }
+
+  .ai-insights-metrics {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+
+    padding-top: 8px;
+  }
+
+  .ai-insight-metric,
+  .ai-insight-metric:first-child,
+  .ai-insight-metric:last-child {
+    padding: 15px 2px;
+  }
+
+  .ai-insight-metric + .ai-insight-metric {
+    border-left: none;
+
+    border-top:
+      1px solid var(--slate-200);
+  }
+
+  .ai-metric-value {
+    font-size: 18px;
+  }
+
+  /*
+    Notification becomes a centered mobile panel.
+  */
+
+  .notification-overlay {
+    display: block;
+  }
+
+  .notification-box {
+    position: fixed;
+
+    top: 82px;
+
+    left: 16px;
+
+    right: 16px;
+
+    width: auto;
+
+    max-width: none;
+
+    max-height:
+      calc(100vh - 105px);
+
+    padding: 17px;
+
+    border-radius: 18px;
+
+    z-index: 1001;
+  }
+
+  .notification-list {
+    max-height:
+      calc(100vh - 285px);
+  }
+}
+
+/* ==========================================================================
+   SMALL PHONES
+   ========================================================================== */
+
+@media (max-width: 400px) {
+  .navbar {
+    padding:
+      16px
+      14px
+      16px
+      64px;
+
+    border-radius: 16px;
+  }
+
+  .navbar-title {
+    font-size: 20px;
+  }
+
+  .navbar-subtitle {
+    font-size: 11px;
+  }
+
+  .navbar-right {
+    gap: 6px;
+  }
+
+  .ai-insights-button {
+    height: 42px;
+
+    min-height: 42px;
+
+    padding: 9px 8px;
+
+    font-size: 11px;
+  }
+
+  .ai-insights-icon {
+    font-size: 15px;
+  }
+
+  .add-transaction-btn {
+    height: 42px;
+
+    padding: 9px 8px;
+
+    font-size: 11px;
+  }
+
+  .add-transaction-btn .btn-icon {
+    font-size: 15px;
+  }
+
+  .notification-button {
+    width: 42px;
+
+    height: 42px;
+  }
+
+  .ai-insights-panel {
+    top: 74px;
+
+    left: 10px;
+
+    right: 10px;
+
+    padding: 15px;
+  }
+
+  .ai-insights-title-row h3 {
+    font-size: 16px;
+  }
+
+  .ai-insights-heading p {
+    font-size: 11px;
+  }
+
+  .ai-metric-value {
+    font-size: 17px;
+  }
+
+  .notification-box {
+    top: 74px;
+
+    left: 10px;
+
+    right: 10px;
+
+    padding: 14px;
+  }
+
+  .notification-top {
+    align-items: flex-start;
+  }
+
+  .notif-title-row h3 {
+    font-size: 15px;
+  }
+
+  .mark-read-btn {
+    font-size: 11px;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .add-transaction-btn,
+  .notification-button,
+  .notification-box,
+  .notification-item,
+  .ai-insights-button,
+  .ai-insights-panel,
+  .ai-insights-close {
+    transition: none;
+
+    animation: none;
+  }
+}

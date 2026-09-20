@@ -1,0 +1,2668 @@
+/* =========================================================
+   REPORTS PAGE LAYOUT
+========================================================= */
+
+.reports-page {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  min-height: 100vh;
+
+  padding: 26px 30px 50px;
+
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(99, 102, 241, 0.10),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(16, 185, 129, 0.08),
+      transparent 30%
+    ),
+    #f8f9ff;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.reports-page-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 24px;
+
+}
+
+
+.reports-title {
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+
+.reports-title-icon {
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #ffffff
+        );
+
+    border: 1px solid #dfe3ff;
+
+    font-size: 22px;
+
+    box-shadow:
+        0 8px 20px rgba(79,70,229,.08);
+
+}
+
+
+.reports-title h1 {
+
+    margin: 0;
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    color: #111827;
+
+}
+
+
+.reports-title p {
+
+    margin: 4px 0 0;
+
+    font-size: 12px;
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================================================
+   DAILY CARD
+========================================================= */
+
+.daily-card {
+
+    position: relative;
+
+    min-height: 170px;
+
+    padding: 24px;
+
+    margin-bottom: 22px;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,.90);
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 12px 35px rgba(15,23,42,.06);
+
+}
+
+
+.daily-card-glow {
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    right: -100px;
+    top: -130px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99,102,241,.12),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+}
+
+
+.daily-header {
+
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.daily-label {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    color: #6366f1;
+
+}
+
+
+.daily-header h3 {
+
+    margin: 0;
+
+    font-size: 16px;
+
+    color: #111827;
+
+}
+
+
+.date-btn {
+
+    height: 36px;
+
+    padding: 0 12px;
+
+    border: 1px solid #dfe3ff;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #4f46e5;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    outline: none;
+
+}
+
+
+.daily-main {
+
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 25px;
+
+    gap: 20px;
+
+}
+
+
+.daily-main h1 {
+
+    margin: 0;
+
+    font-size: 32px;
+
+    font-weight: 800;
+
+    color: #111827;
+
+}
+
+
+.daily-subtitle {
+
+    margin: 4px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+}
+
+
+.transaction-link {
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 14px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #6366f1;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.report-summary-cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0,1fr));
+
+    gap: 16px;
+
+    margin-bottom: 24px;
+
+}
+
+
+.report-card {
+
+    min-height: 125px;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 8px 25px rgba(15,23,42,.05);
+
+}
+
+
+.report-card-top {
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.report-card-icon {
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    font-size: 15px;
+
+}
+
+
+.report-card-top span {
+
+    font-size: 11px;
+
+    color: #64748b;
+
+    font-weight: 600;
+
+}
+
+
+.report-card h2 {
+
+    margin: 15px 0 3px;
+
+    font-size: 21px;
+
+    color: #111827;
+
+}
+
+
+.report-card p {
+
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+
+}
+
+
+/* =========================================================
+   ANALYTICS GRID
+========================================================= */
+
+.report-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0,1.35fr)
+        minmax(320px,.8fr);
+
+    gap: 20px;
+
+    align-items: stretch;
+
+}
+
+
+/* =========================================================
+   EXPENSE CATEGORY CARD
+========================================================= */
+
+.reports-expense-wrapper {
+
+    min-width: 0;
+
+}
+
+
+.expense-category-card {
+
+    position: relative;
+
+    min-height: 650px;
+
+    padding: 20px;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f8f8ff
+        );
+
+    border: 1px solid #e1e4ff;
+
+    box-shadow:
+        0 12px 35px rgba(15,23,42,.06);
+
+}
+
+
+/* =========================================================
+   EXPENSE CATEGORY HEADER
+========================================================= */
+
+.expense-category-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+}
+
+
+.expense-category-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    min-width: 0;
+
+}
+
+
+.expense-category-icon {
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #ffffff
+        );
+
+    border: 1px solid #dcdfff;
+
+    font-size: 19px;
+
+}
+
+
+.expense-category-label {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.1px;
+
+    color: #6366f1;
+
+}
+
+
+.expense-category-title h2 {
+
+    margin: 0;
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    color: #111827;
+
+}
+
+
+.expense-category-title p {
+
+    margin: 3px 0 0;
+
+    font-size: 9px;
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================================================
+   VIEWING MONTH
+========================================================= */
+
+.expense-category-viewing {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+
+}
+
+
+.expense-category-viewing span {
+
+    font-size: 8px;
+
+    color: #64748b;
+
+    white-space: nowrap;
+
+}
+
+
+.expense-category-viewing select {
+
+    height: 32px;
+
+    padding: 0 25px 0 10px;
+
+    border: 1px solid #dfe3ff;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #4f46e5;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    outline: none;
+
+}
+
+
+/* =========================================================
+   HIDE DUPLICATE HEADER
+========================================================= */
+
+.expense-category-card >
+.expense-category-header:nth-of-type(2) {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   DONUT CHART AREA
+========================================================= */
+
+.expense-category-chart {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 430px;
+
+    min-height: 430px;
+
+    margin-top: 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: visible;
+
+}
+
+
+/* =========================================================
+   CHART GLOW
+========================================================= */
+
+.expense-chart-glow {
+
+    position: absolute;
+
+    width: 380px;
+    height: 380px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99,102,241,.10),
+            rgba(99,102,241,.03) 45%,
+            transparent 72%
+        );
+
+    filter: blur(2px);
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   CHART INNER
+========================================================= */
+
+.expense-chart-inner {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 430px;
+
+    min-height: 430px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: visible;
+
+}
+
+
+.expense-chart-inner > div {
+
+    width: 100% !important;
+
+    height: 430px !important;
+
+    min-height: 430px !important;
+
+}
+
+
+/* =========================================================
+   RECHARTS SVG
+========================================================= */
+
+.expense-chart-inner svg {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: visible;
+
+}
+
+
+/* =========================================================
+   HIDE DONUT LEGEND
+========================================================= */
+
+.expense-pie-legend {
+
+    display: none !important;
+
+}
+
+
+.expense-chart-inner
+.recharts-legend-wrapper {
+
+    display: none !important;
+
+}
+
+
+/* =========================================================
+   REMOVE CENTER TOTAL
+   Total spending is already shown in the footer.
+========================================================= */
+
+.expense-pie-center {
+
+    display: none !important;
+
+}
+
+
+/* =========================================================
+   TOOLTIP
+========================================================= */
+
+.expense-pie-tooltip {
+
+    min-width: 145px;
+
+    padding: 10px 12px;
+
+    border-radius: 11px;
+
+    background: rgba(255,255,255,.97);
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 12px 30px rgba(15,23,42,.12);
+
+}
+
+
+.expense-tooltip-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 10px;
+
+    color: #111827;
+
+}
+
+
+.expense-tooltip-dot {
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+}
+
+
+.expense-tooltip-amount {
+
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: 14px;
+
+    color: #111827;
+
+}
+
+
+.expense-tooltip-percent {
+
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 8px;
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================================================
+   EMPTY PIE
+========================================================= */
+
+.expense-pie-empty {
+
+    min-height: 350px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.expense-pie-empty-icon {
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.expense-pie-empty h3 {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    color: #334155;
+
+}
+
+
+.expense-pie-empty p {
+
+    margin: 5px 0 0;
+
+    font-size: 10px;
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================================================
+   EXPENSE FOOTER
+   Larger bottom information card
+========================================================= */
+
+.expense-category-footer {
+
+    min-height: 100px;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+    padding: 18px 24px;
+
+    margin-top: 4px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.85);
+
+    border: 1px solid #dfe5f2;
+
+    box-shadow:
+        0 6px 20px rgba(15,23,42,.04);
+
+}
+
+
+.expense-footer-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    flex: 1;
+
+    min-height: 62px;
+
+}
+
+
+.expense-footer-icon {
+
+    width: 48px;
+    height: 48px;
+
+    min-width: 48px;
+
+    border-radius: 14px;
+
+    font-size: 19px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.expense-footer-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 5px;
+
+}
+
+
+.expense-footer-content span {
+
+    font-size: 10px;
+
+    line-height: 1.2;
+
+    color: #94a3b8;
+
+}
+
+
+.expense-footer-content strong {
+
+    font-size: 17px;
+
+    line-height: 1.2;
+
+    color: #111827;
+
+}
+
+
+.expense-footer-divider {
+
+    width: 1px;
+
+    height: 52px;
+
+    flex-shrink: 0;
+
+    background: #dbe2ee;
+
+}
+
+
+/* =========================================================
+   CATEGORY ANALYSIS
+========================================================= */
+
+.category-analysis-card {
+
+    min-width: 0;
+
+    padding: 20px;
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 12px 35px rgba(15,23,42,.06);
+
+}
+
+
+.category-analysis-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 17px;
+
+}
+
+
+.chart-small-label {
+
+    display: block;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    color: #6366f1;
+
+}
+
+
+.category-analysis-header h2 {
+
+    margin: 4px 0 0;
+
+    font-size: 17px;
+
+    color: #111827;
+
+}
+
+
+.category-header-icon {
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f1f5f9;
+
+}
+
+
+.category-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+.category-item {
+
+    padding: 11px;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+}
+
+
+.category-item-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+}
+
+
+.category-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    min-width: 0;
+
+}
+
+
+.category-icon {
+
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+}
+
+
+.category-info {
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.category-info strong {
+
+    max-width: 180px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 11px;
+
+    color: #334155;
+
+}
+
+
+.category-info small {
+
+    margin-top: 2px;
+
+    font-size: 8px;
+
+    color: #94a3b8;
+
+}
+
+
+.category-value strong {
+
+    font-size: 11px;
+
+    color: #111827;
+
+}
+
+
+.category-progress {
+
+    width: 100%;
+
+    height: 5px;
+
+    margin-top: 8px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #e2e8f0;
+
+}
+
+
+.category-progress-bar {
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: #6366f1;
+
+}
+
+
+.empty-category {
+
+    min-height: 260px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.empty-category-icon {
+
+    font-size: 28px;
+
+}
+
+
+.empty-category h3 {
+
+    margin: 8px 0 3px;
+
+    font-size: 14px;
+
+}
+
+
+.empty-category p {
+
+    margin: 0;
+
+    font-size: 9px;
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================================================
+   AI INSIGHTS
+========================================================= */
+
+.ai-insights-card {
+
+    margin-top: 22px;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,.05);
+
+}
+
+
+.ai-insights-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 16px;
+
+}
+
+
+.ai-icon {
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #eef2ff;
+
+}
+
+
+.ai-insights-header span {
+
+    display: block;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    color: #6366f1;
+
+}
+
+
+.ai-insights-header h2 {
+
+    margin: 3px 0 0;
+
+    font-size: 17px;
+
+    color: #111827;
+
+}
+
+
+.insight-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0,1fr));
+
+    gap: 10px;
+
+}
+
+
+.insight-box {
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+}
+
+
+.insight-box span {
+
+    display: block;
+
+    font-size: 9px;
+
+    color: #64748b;
+
+}
+
+
+.insight-box strong {
+
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 14px;
+
+    color: #111827;
+
+}
+
+
+.ai-warning,
+.ai-success {
+
+    grid-column: 1 / -1;
+
+    padding: 11px;
+
+    border-radius: 10px;
+
+    font-size: 10px;
+
+}
+
+
+.ai-warning {
+
+    background: #fff7ed;
+
+    color: #c2410c;
+
+}
+
+
+.ai-success {
+
+    background: #ecfdf5;
+
+    color: #047857;
+
+}
+
+
+.insight-empty {
+
+    padding: 20px;
+
+    text-align: center;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================================
+   TRANSACTION POPUP
+========================================================= */
+
+.transaction-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15,23,42,.45);
+
+    backdrop-filter: blur(5px);
+
+}
+
+
+.transaction-popup {
+
+    position: relative;
+
+    width: 700px;
+
+    max-width: 95vw;
+
+    max-height: 85vh;
+
+    overflow: auto;
+
+    padding: 24px;
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 25px 70px rgba(15,23,42,.25);
+
+}
+
+
+.close-popup {
+
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #f1f5f9;
+
+    cursor: pointer;
+
+}
+
+
+.popup-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.popup-icon {
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #eef2ff;
+
+}
+
+
+.popup-header h2 {
+
+    margin: 0;
+
+    font-size: 18px;
+
+}
+
+
+.popup-header p {
+
+    margin: 3px 0 0;
+
+    font-size: 10px;
+
+    color: #94a3b8;
+
+}
+
+
+.popup-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.popup-item {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding: 11px;
+
+    border-radius: 11px;
+
+    background: #f8fafc;
+
+}
+
+
+.popup-item-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.popup-item-icon {
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+}
+
+
+.popup-item strong {
+
+    font-size: 11px;
+
+}
+
+
+.popup-item p {
+
+    margin: 2px 0 0;
+
+    font-size: 8px;
+
+    color: #94a3b8;
+
+}
+
+
+.expense-text {
+
+    color: #ef4444;
+
+}
+
+
+.income-text {
+
+    color: #10b981;
+
+}
+
+
+.popup-empty {
+
+    padding: 40px;
+
+    text-align: center;
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .report-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .report-summary-cards {
+
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+
+    }
+
+
+    .insight-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .reports-page {
+
+        padding: 18px 15px 35px;
+
+    }
+
+
+    .reports-title {
+
+        gap: 10px;
+
+    }
+
+
+    .reports-title-icon {
+
+        width: 40px;
+        height: 40px;
+
+        border-radius: 12px;
+
+        font-size: 18px;
+
+    }
+
+
+    .reports-title h1 {
+
+        font-size: 20px;
+
+    }
+
+
+    .reports-title p {
+
+        font-size: 9px;
+
+    }
+
+
+    .daily-card {
+
+        min-height: 155px;
+
+        padding: 19px;
+
+        border-radius: 19px;
+
+    }
+
+
+    .daily-main h1 {
+
+        font-size: 27px;
+
+    }
+
+
+    .daily-header {
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+    }
+
+
+    .date-btn {
+
+        max-width: 125px;
+
+    }
+
+
+    .report-summary-cards {
+
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+
+        gap: 10px;
+
+    }
+
+
+    .report-card {
+
+        min-height: 100px;
+
+        padding: 14px;
+
+        border-radius: 15px;
+
+    }
+
+
+    .report-card h2 {
+
+        font-size: 18px;
+
+    }
+
+
+    .report-card-top span {
+
+        font-size: 9px;
+
+    }
+
+
+    /* =====================================================
+       EXPENSE CATEGORY
+    ===================================================== */
+
+    .expense-category-card {
+
+        min-height: 570px;
+
+        padding: 18px;
+
+        border-radius: 20px;
+
+    }
+
+
+    .expense-category-header {
+
+        gap: 9px;
+
+    }
+
+
+    .expense-category-title {
+
+        gap: 9px;
+
+    }
+
+
+    .expense-category-title h2 {
+
+        font-size: 16px;
+
+    }
+
+
+    .expense-category-title p {
+
+        font-size: 10px;
+
+    }
+
+
+    .expense-category-icon {
+
+        width: 40px;
+        height: 40px;
+
+        border-radius: 12px;
+
+        font-size: 18px;
+
+    }
+
+
+    .expense-category-viewing {
+
+        flex-direction: column;
+
+        align-items: flex-end;
+
+        gap: 4px;
+
+    }
+
+
+    .expense-category-viewing span {
+
+        font-size: 7px;
+
+    }
+
+
+    .expense-category-viewing select {
+
+        height: 30px;
+
+        font-size: 8px;
+
+    }
+
+
+    /* =====================================================
+       MOBILE DONUT
+    ===================================================== */
+
+    .expense-category-chart {
+
+        height: 350px;
+
+        min-height: 350px;
+
+        margin-top: 5px;
+
+    }
+
+
+    .expense-chart-inner {
+
+        height: 350px;
+
+        min-height: 350px;
+
+    }
+
+
+    .expense-chart-inner > div {
+
+        width: 100% !important;
+
+        height: 350px !important;
+
+        min-height: 350px !important;
+
+    }
+
+
+    .expense-chart-glow {
+
+        width: 300px;
+
+        height: 300px;
+
+    }
+
+
+    /* =====================================================
+       BOTTOM FOOTER
+    ===================================================== */
+
+    .expense-category-footer {
+
+        min-height: 92px;
+
+        padding: 14px 16px;
+
+        border-radius: 16px;
+
+        gap: 12px;
+
+    }
+
+
+    .expense-footer-item {
+
+        min-height: 62px;
+
+        gap: 10px;
+
+    }
+
+
+    .expense-footer-icon {
+
+        width: 40px;
+
+        height: 40px;
+
+        min-width: 40px;
+
+        border-radius: 12px;
+
+        font-size: 16px;
+
+    }
+
+
+    .expense-footer-content {
+
+        gap: 4px;
+
+    }
+
+
+    .expense-footer-content span {
+
+        font-size: 8px;
+
+    }
+
+
+    .expense-footer-content strong {
+
+        font-size: 14px;
+
+    }
+
+
+    .expense-footer-divider {
+
+        height: 45px;
+
+    }
+
+
+    /* CATEGORY */
+
+    .category-analysis-card {
+
+        min-height: auto;
+
+    }
+
+
+    /* AI */
+
+    .insight-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .ai-insights-card {
+
+        padding: 16px;
+
+    }
+
+
+    /* POPUP */
+
+    .transaction-popup {
+
+        width: 100%;
+
+        max-height: 82vh;
+
+        padding: 20px;
+
+        border-radius: 20px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .reports-page {
+
+        padding-left: 12px;
+
+        padding-right: 12px;
+
+    }
+
+
+    /* =====================================================
+       PAGE HEADER
+    ===================================================== */
+
+    .reports-title h1 {
+
+        font-size: 18px;
+
+    }
+
+
+    .reports-title p {
+
+        display: none;
+
+    }
+
+
+    /* =====================================================
+       DAILY SPENDING
+    ===================================================== */
+
+    .daily-header {
+
+        flex-direction: column;
+
+    }
+
+
+    .date-btn {
+
+        width: 100%;
+
+        max-width: none;
+
+    }
+
+
+    .daily-main {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+    }
+
+
+    /* =====================================================
+       SUMMARY
+    ===================================================== */
+
+    .report-summary-cards {
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+
+    }
+
+
+    .report-card {
+
+        padding: 12px;
+
+    }
+
+
+    .report-card h2 {
+
+        font-size: 16px;
+
+    }
+
+
+    .report-card p {
+
+        font-size: 8px;
+
+    }
+
+
+    /* =====================================================
+       EXPENSE HEADER
+    ===================================================== */
+
+    .expense-category-card {
+
+        min-height: 545px;
+
+        padding: 14px;
+
+    }
+
+
+    .expense-category-header {
+
+        align-items: flex-start;
+
+        gap: 7px;
+
+    }
+
+
+    .expense-category-title {
+
+        gap: 7px;
+
+        min-width: 0;
+
+    }
+
+
+    .expense-category-title h2 {
+
+        font-size: 14px;
+
+    }
+
+
+    .expense-category-title p {
+
+        font-size: 8px;
+
+    }
+
+
+    .expense-category-label {
+
+        font-size: 7px;
+
+        letter-spacing: .7px;
+
+    }
+
+
+    .expense-category-icon {
+
+        width: 36px;
+        height: 36px;
+
+        border-radius: 10px;
+
+        font-size: 16px;
+
+    }
+
+
+    /* =====================================================
+       VIEWING
+    ===================================================== */
+
+    .expense-category-viewing {
+
+        flex-shrink: 0;
+
+        gap: 3px;
+
+    }
+
+
+    .expense-category-viewing span {
+
+        font-size: 6px;
+
+    }
+
+
+    .expense-category-viewing select {
+
+        width: 67px;
+
+        height: 28px;
+
+        padding: 0 5px;
+
+        font-size: 7px;
+
+    }
+
+
+    /* =====================================================
+       LARGE DONUT
+    ===================================================== */
+
+    .expense-category-chart {
+
+        width: 100%;
+
+        height: 320px;
+
+        min-height: 320px;
+
+        margin-top: 4px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        overflow: visible;
+
+    }
+
+
+    .expense-chart-glow {
+
+        width: 270px;
+
+        height: 270px;
+
+    }
+
+
+    .expense-chart-inner {
+
+        width: 100%;
+
+        height: 320px;
+
+        min-height: 320px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        overflow: visible;
+
+    }
+
+
+    .expense-chart-inner > div {
+
+        width: 100% !important;
+
+        height: 320px !important;
+
+        min-height: 320px !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+
+        justify-content: center !important;
+
+    }
+
+
+    .expense-chart-inner svg {
+
+        display: block !important;
+
+        max-width: none !important;
+
+        max-height: none !important;
+
+        overflow: visible !important;
+
+    }
+
+
+    /* =====================================================
+       REMOVE CENTER TOTAL
+    ===================================================== */
+
+    .expense-pie-center {
+
+        display: none !important;
+
+    }
+
+
+    /* =====================================================
+       FOOTER - BIGGER
+    ===================================================== */
+
+    .expense-category-footer {
+
+        min-height: 88px;
+
+        padding: 13px 14px;
+
+        border-radius: 15px;
+
+        gap: 8px;
+
+    }
+
+
+    .expense-footer-item {
+
+        min-height: 60px;
+
+        gap: 8px;
+
+    }
+
+
+    .expense-footer-icon {
+
+        width: 38px;
+
+        height: 38px;
+
+        min-width: 38px;
+
+        border-radius: 11px;
+
+        font-size: 15px;
+
+    }
+
+
+    .expense-footer-content {
+
+        gap: 4px;
+
+    }
+
+
+    .expense-footer-content span {
+
+        font-size: 7.5px;
+
+    }
+
+
+    .expense-footer-content strong {
+
+        font-size: 13px;
+
+    }
+
+
+    .expense-footer-divider {
+
+        height: 42px;
+
+    }
+
+
+    /* =====================================================
+       CATEGORY ANALYSIS
+    ===================================================== */
+
+    .category-analysis-card {
+
+        padding: 14px;
+
+    }
+
+
+    .category-analysis-header {
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .category-analysis-header h2 {
+
+        font-size: 14px;
+
+    }
+
+
+    .category-list {
+
+        gap: 6px;
+
+    }
+
+
+    .category-item {
+
+        padding: 8px;
+
+    }
+
+
+    .category-info strong {
+
+        max-width: 100px;
+
+        font-size: 9px;
+
+    }
+
+
+    .category-info small {
+
+        font-size: 7px;
+
+    }
+
+
+    .category-value strong {
+
+        font-size: 9px;
+
+    }
+
+
+    /* =====================================================
+       AI INSIGHTS
+    ===================================================== */
+
+    .ai-insights-card {
+
+        padding: 14px;
+
+    }
+
+
+    .ai-insights-header h2 {
+
+        font-size: 14px;
+
+    }
+
+
+    .insight-box {
+
+        padding: 9px;
+
+    }
+
+}
+/* =========================================================
+   EXTRA RESPONSIVE SAFETY
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.reports-page,
+.report-layout,
+.report-summary-cards,
+.expense-category-card,
+.category-analysis-card,
+.ai-insights-card {
+  min-width: 0;
+}
+
+.reports-page-header,
+.daily-header,
+.daily-main,
+.expense-category-header,
+.category-analysis-header,
+.ai-insights-header {
+  min-width: 0;
+}
+
+/* Prevent long text from creating horizontal overflow */
+.reports-title,
+.reports-title > div,
+.daily-header > div,
+.daily-main > div,
+.expense-category-title,
+.expense-category-title > div {
+  min-width: 0;
+}
+
+/* =========================================================
+   TABLET IMPROVEMENT
+========================================================= */
+
+@media (max-width: 1000px) {
+  .reports-page {
+    padding: 24px 22px 40px;
+  }
+
+  .report-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .report-summary-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .expense-category-card {
+    min-height: auto;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+  .reports-page {
+    width: 100%;
+    padding: 18px 15px 35px;
+  }
+
+  .reports-page-header {
+    margin-bottom: 18px;
+  }
+
+  .reports-title {
+    min-width: 0;
+  }
+
+  .reports-title h1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .daily-main {
+    min-width: 0;
+  }
+
+  .daily-main h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .report-summary-cards {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .report-layout {
+    width: 100%;
+  }
+
+  .expense-category-card,
+  .category-analysis-card {
+    width: 100%;
+  }
+
+  .expense-category-header {
+    width: 100%;
+  }
+
+  .expense-category-title {
+    flex: 1;
+  }
+
+  .expense-category-viewing {
+    flex-shrink: 0;
+  }
+
+  .expense-category-footer {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .expense-footer-item {
+    min-width: 0;
+  }
+
+  .expense-footer-content {
+    min-width: 0;
+  }
+
+  .expense-footer-content strong,
+  .expense-footer-content span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .category-analysis-card,
+  .ai-insights-card {
+    overflow: hidden;
+  }
+
+  .transaction-popup {
+    box-sizing: border-box;
+  }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 420px) {
+  .reports-page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .report-summary-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .expense-category-footer {
+    gap: 6px;
+  }
+
+  .expense-footer-item {
+    gap: 6px;
+  }
+
+  .expense-footer-divider {
+    flex-shrink: 0;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .reports-page *,
+  .reports-page *::before,
+  .reports-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

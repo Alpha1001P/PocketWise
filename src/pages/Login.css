@@ -1,0 +1,1035 @@
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(220, 242, 255, 0.95),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(215, 250, 238, 0.9),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #eef8ff 0%,
+      #f8fcff 48%,
+      #effcf7 100%
+    );
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #102a43;
+}
+
+/* =========================
+   BACKGROUND SHAPES
+========================= */
+
+.login-bg-shape {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.shape-one {
+  width: 500px;
+  height: 500px;
+
+  left: -280px;
+  bottom: -230px;
+
+  background: rgba(105, 220, 184, 0.18);
+}
+
+.shape-two {
+  width: 600px;
+  height: 600px;
+
+  right: -350px;
+  top: 100px;
+
+  background: rgba(88, 184, 255, 0.14);
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.login-container {
+  min-height: 100vh;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 0.92fr;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================
+   LEFT SHOWCASE
+========================= */
+
+.login-showcase {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 60px 50px;
+}
+
+.showcase-content {
+  width: min(620px, 100%);
+}
+
+/* Badge */
+
+.showcase-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 9px 15px;
+
+  border-radius: 50px;
+
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(30, 150, 110, 0.15);
+
+  color: #14895e;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  box-shadow:
+    0 8px 25px rgba(36, 111, 88, 0.07);
+
+  margin-bottom: 22px;
+}
+
+/* Heading */
+
+.showcase-content h1 {
+  margin: 0;
+
+  font-size: clamp(48px, 5vw, 74px);
+
+  line-height: 1.04;
+
+  letter-spacing: -3px;
+
+  font-weight: 800;
+
+  color: #102a43;
+}
+
+.showcase-content h1 span {
+  color: #12a66a;
+}
+
+/* Description */
+
+.showcase-description {
+  margin: 22px 0 0;
+
+  font-size: 18px;
+
+  line-height: 1.65;
+
+  color: #59738f;
+
+  font-weight: 500;
+}
+
+/* =========================
+   FINANCE ILLUSTRATION
+========================= */
+
+.finance-illustration {
+  position: relative;
+
+  height: 420px;
+
+  margin-top: 15px;
+
+  max-width: 560px;
+}
+
+/* Phone */
+
+.phone-card {
+  position: absolute;
+
+  left: 100px;
+  top: 20px;
+
+  width: 235px;
+  height: 365px;
+
+  padding: 22px 18px;
+
+  border-radius: 35px;
+
+  background: #ffffff;
+
+  border: 7px solid #193b56;
+
+  box-shadow:
+    0 30px 55px rgba(25, 64, 87, 0.2);
+
+  transform: rotate(-7deg);
+
+  z-index: 5;
+}
+
+.phone-top {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 9px;
+
+  color: #6c8296;
+
+  margin-bottom: 25px;
+}
+
+.phone-balance-label {
+  font-size: 10px;
+  color: #8294a5;
+}
+
+.phone-balance {
+  margin-top: 4px;
+
+  font-size: 27px;
+  font-weight: 800;
+
+  color: #102a43;
+}
+
+.phone-growth {
+  margin-top: 3px;
+
+  color: #14a36a;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+/* Chart */
+
+.mini-chart {
+  height: 70px;
+
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+
+  padding: 8px 4px;
+
+  margin-top: 5px;
+
+  border-bottom: 1px solid #e9eff4;
+}
+
+.bar {
+  width: 25px;
+
+  border-radius: 7px 7px 2px 2px;
+
+  background: linear-gradient(
+    to top,
+    #53c99c,
+    #9ae2c4
+  );
+}
+
+.bar-one {
+  height: 30px;
+}
+
+.bar-two {
+  height: 48px;
+}
+
+.bar-three {
+  height: 38px;
+}
+
+.bar-four {
+  height: 59px;
+}
+
+.bar-five {
+  height: 45px;
+}
+
+/* Recent */
+
+.recent-title {
+  margin-top: 14px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  color: #243f58;
+}
+
+.mini-transaction {
+  display: grid;
+
+  grid-template-columns: 30px 1fr auto;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 10px;
+}
+
+.transaction-icon {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 13px;
+}
+
+.food-icon {
+  background: #ffe4dc;
+}
+
+.travel-icon {
+  background: #dceeff;
+}
+
+.salary-icon {
+  background: #d9f6e9;
+}
+
+.mini-transaction strong {
+  display: block;
+
+  font-size: 9px;
+
+  color: #203d57;
+}
+
+.mini-transaction small {
+  display: block;
+
+  font-size: 7px;
+
+  color: #91a0ad;
+
+  margin-top: 2px;
+}
+
+.mini-transaction b {
+  font-size: 8px;
+}
+
+.expense {
+  color: #f05a55;
+}
+
+.income {
+  color: #13a46b;
+}
+
+/* =========================
+   WALLET
+========================= */
+
+.wallet {
+  position: absolute;
+
+  width: 215px;
+  height: 140px;
+
+  left: 310px;
+  top: 190px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #22ae74,
+      #078e5a
+    );
+
+  border-radius: 22px;
+
+  transform: rotate(5deg);
+
+  box-shadow:
+    0 25px 45px rgba(19, 130, 86, 0.25);
+
+  z-index: 2;
+}
+
+.wallet::before {
+  content: "";
+
+  position: absolute;
+
+  left: 25px;
+  top: 35px;
+
+  width: 165px;
+  height: 75px;
+
+  border: 2px dashed rgba(255,255,255,0.3);
+
+  border-radius: 15px;
+}
+
+.wallet-money {
+  position: absolute;
+
+  left: 35px;
+  top: 18px;
+
+  font-size: 35px;
+
+  font-weight: 800;
+
+  color: #ffffff;
+}
+
+.wallet-lock {
+  position: absolute;
+
+  right: 20px;
+  bottom: 25px;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ffc94a;
+
+  color: #986600;
+
+  font-size: 10px;
+}
+
+/* =========================
+   COINS
+========================= */
+
+.coins {
+  position: absolute;
+
+  left: 435px;
+  bottom: 20px;
+
+  width: 90px;
+  height: 80px;
+
+  z-index: 4;
+}
+
+.coin {
+  position: absolute;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    145deg,
+    #ffd85a,
+    #f0a914
+  );
+
+  border: 3px solid #eaa313;
+
+  color: #9a6500;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 7px 12px rgba(137, 95, 0, 0.18);
+}
+
+.coin-one {
+  left: 0;
+  bottom: 0;
+}
+
+.coin-two {
+  left: 25px;
+  bottom: 18px;
+}
+
+.coin-three {
+  left: 48px;
+  bottom: 0;
+}
+
+/* =========================
+   LEAVES
+========================= */
+
+.leaf {
+  position: absolute;
+
+  width: 70px;
+  height: 125px;
+
+  border-radius: 100% 0 100% 0;
+
+  background: linear-gradient(
+    145deg,
+    #71d6aa,
+    #1da878
+  );
+
+  opacity: 0.65;
+
+  transform: rotate(-30deg);
+}
+
+.leaf-one {
+  left: 15px;
+  bottom: 40px;
+}
+
+.leaf-two {
+  left: 45px;
+  bottom: 10px;
+
+  transform: rotate(-5deg) scale(0.8);
+}
+
+.leaf-three {
+  left: 0;
+  bottom: 100px;
+
+  transform: rotate(-55deg) scale(0.7);
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.showcase-features {
+  display: flex;
+  align-items: center;
+
+  max-width: 480px;
+
+  margin-top: -25px;
+
+  position: relative;
+
+  z-index: 10;
+}
+
+.feature {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.feature-icon {
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.8);
+
+  box-shadow:
+    0 8px 20px rgba(30, 110, 90, 0.08);
+
+  margin-bottom: 7px;
+
+  font-size: 18px;
+}
+
+.feature strong {
+  font-size: 14px;
+
+  color: #173957;
+}
+
+.feature span {
+  font-size: 13px;
+
+  color: #668096;
+
+  margin-top: 2px;
+}
+
+.feature-divider {
+  height: 45px;
+
+  width: 1px;
+
+  background: rgba(53, 135, 111, 0.25);
+}
+
+/* =========================
+   RIGHT LOGIN SECTION
+========================= */
+
+.login-section {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 60px;
+}
+
+/* Login Card */
+
+.login-card {
+  width: min(500px, 100%);
+
+  min-height: 650px;
+
+  padding: 55px 55px 35px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  border: 1px solid rgba(255,255,255,0.8);
+
+  border-radius: 32px;
+
+  box-shadow:
+    0 30px 80px rgba(36, 79, 110, 0.13);
+
+  backdrop-filter: blur(18px);
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   BRAND
+========================= */
+
+.login-brand {
+  text-align: center;
+}
+
+.brand-icon {
+  width: 62px;
+  height: 62px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 14px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #dff9ec,
+      #b8eed6
+    );
+
+  font-size: 31px;
+
+  box-shadow:
+    0 10px 25px rgba(28, 154, 105, 0.12);
+}
+
+.login-brand h2 {
+  margin: 0;
+
+  font-size: 39px;
+
+  letter-spacing: -1.5px;
+
+  color: #102a43;
+
+  font-weight: 800;
+}
+
+.login-brand h2 span {
+  color: #11a66a;
+}
+
+.login-brand p {
+  margin: 7px 0 0;
+
+  color: #617991;
+
+  font-size: 15px;
+
+  font-weight: 500;
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome-section {
+  text-align: center;
+
+  margin-top: 62px;
+}
+
+.welcome-section h1 {
+  margin: 0;
+
+  font-size: 32px;
+
+  letter-spacing: -1px;
+
+  color: #102a43;
+
+  font-weight: 800;
+}
+
+.welcome-section p {
+  margin: 12px 0 0;
+
+  color: #617991;
+
+  font-size: 16px;
+
+  line-height: 1.6;
+}
+
+/* =========================
+   GOOGLE BUTTON
+========================= */
+
+.google-login-button {
+  width: 100%;
+
+  height: 78px;
+
+  margin-top: 52px;
+
+  padding: 0 22px;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: 18px;
+
+  border: 2px solid #d7e5ef;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  color: #142f48;
+
+  font-family: inherit;
+}
+
+.google-login-button:hover {
+  transform: translateY(-2px);
+
+  border-color: #b9d3e5;
+
+  box-shadow:
+    0 14px 30px rgba(42, 90, 122, 0.12);
+}
+
+.google-login-button:active {
+  transform: translateY(0);
+}
+
+.google-login-button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.65;
+
+  transform: none;
+}
+
+.google-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.google-button-text {
+  flex: 1;
+
+  text-align: left;
+
+  margin-left: 12px;
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+.google-arrow {
+  width: 42px;
+
+  font-size: 28px;
+
+  color: #6d8294;
+
+  transition: transform 0.2s ease;
+}
+
+.google-login-button:hover .google-arrow {
+  transform: translateX(4px);
+
+  color: #12a66a;
+}
+
+/* =========================
+   SECURITY
+========================= */
+
+.secure-login {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 31px;
+
+  color: #60768b;
+
+  font-size: 13px;
+
+  text-align: center;
+}
+
+.lock-icon {
+  font-size: 14px;
+}
+
+/* =========================
+   BOTTOM
+========================= */
+
+.login-bottom {
+  margin-top: auto;
+  padding-top: 35px;
+
+  text-align: center;
+
+  color: #94a4b1;
+
+  font-size: 12px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1050px) {
+
+  .login-container {
+    grid-template-columns: 0.9fr 1fr;
+  }
+
+  .login-showcase {
+    padding: 40px 30px;
+  }
+
+  .showcase-content h1 {
+    font-size: 52px;
+  }
+
+  .finance-illustration {
+    transform: scale(0.9);
+    transform-origin: left center;
+  }
+
+  .login-section {
+    padding: 30px;
+  }
+
+  .login-card {
+    padding: 45px 40px 30px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 760px) {
+
+  .login-page {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    min-height: 100vh;
+  }
+
+  .login-container {
+    display: block;
+
+    min-height: 100vh;
+  }
+
+  /* Hide illustration on phone */
+
+  .login-showcase {
+    display: none;
+  }
+
+  .login-section {
+    min-height: 100vh;
+
+    padding: 22px 16px;
+
+    display: flex;
+
+    align-items: center;
+  }
+
+  .login-card {
+    width: 100%;
+
+    min-height: auto;
+
+    padding: 38px 24px 28px;
+
+    border-radius: 27px;
+  }
+
+  .brand-icon {
+    width: 58px;
+    height: 58px;
+
+    font-size: 28px;
+  }
+
+  .login-brand h2 {
+    font-size: 34px;
+  }
+
+  .login-brand p {
+    font-size: 14px;
+  }
+
+  .welcome-section {
+    margin-top: 48px;
+  }
+
+  .welcome-section h1 {
+    font-size: 27px;
+  }
+
+  .welcome-section p {
+    font-size: 14px;
+  }
+
+  .google-login-button {
+    height: 68px;
+
+    margin-top: 40px;
+
+    border-radius: 16px;
+  }
+
+  .google-button-text {
+    font-size: 15px;
+  }
+
+  .secure-login {
+    font-size: 11px;
+  }
+
+  .login-bottom {
+    margin-top: 45px;
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 380px) {
+
+  .login-section {
+    padding: 15px 10px;
+  }
+
+  .login-card {
+    padding: 32px 18px 25px;
+  }
+
+  .welcome-section {
+    margin-top: 40px;
+  }
+
+  .google-login-button {
+    padding: 0 14px;
+  }
+
+  .google-button-text {
+    margin-left: 7px;
+
+    font-size: 14px;
+  }
+
+  .google-arrow {
+    font-size: 23px;
+  }
+}
