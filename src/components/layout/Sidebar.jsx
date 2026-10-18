@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "../styles/sidebar.css";
+import "../../styles/sidebar.css";
 
 function Sidebar() {
   const [profileName, setProfileName] = useState(

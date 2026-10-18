@@ -4,7 +4,14 @@ import "./TransactionModal.css";
 import {
   getTransactions,
   getUserSettings,
-} from "../lib/database";
+  getTransactionRules,
+  saveTransactionRule,
+} from "../../lib/database";
+
+import {
+  detectTransactionCategory,
+  getCategoryIcon,
+} from "../../utils/categoryDetector";
 
 function TransactionForm({
   onAdd,
@@ -13,6 +20,10 @@ function TransactionForm({
   accounts = [],
   onClose,
 }) {
+  // ========================================
+  // BASIC FORM STATE
+  // ========================================
+
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("Expense");
@@ -24,6 +35,22 @@ function TransactionForm({
   );
 
   const [showSuccess, setShowSuccess] = useState(false);
+
+  // ========================================
+  // SMART CATEGORY STATE
+  // ========================================
+
+  const [autoDetectedCategory, setAutoDetectedCategory] =
+    useState(null);
+
+  const [categoryManuallySelected, setCategoryManuallySelected] =
+    useState(false);
+
+  const [transactionRules, setTransactionRules] =
+    useState([]);
+
+  const [learnedCategory, setLearnedCategory] =
+    useState(null);
 
   // ========================================
   // BUDGET STATE
@@ -46,6 +73,7 @@ function TransactionForm({
     { label: "Bills", icon: "🧾" },
     { label: "Health", icon: "🏥" },
     { label: "Education", icon: "🎓" },
+    { label: "Entertainment", icon: "🎬" },
     { label: "Other", icon: "🏷️" },
   ];
 
@@ -58,22 +86,55 @@ function TransactionForm({
   ];
 
   // ========================================
-  // LOAD BUDGET + EXPENSES FROM SUPABASE
+  // LOAD TRANSACTION RULES
+  // ========================================
+
+  useEffect(() => {
+    async function loadTransactionRules() {
+      try {
+        const { data, error } =
+          await getTransactionRules();
+
+        if (error) {
+          console.error(
+            "Could not load transaction rules:",
+            error
+          );
+          return;
+        }
+
+        setTransactionRules(data || []);
+      } catch (error) {
+        console.error(
+          "Transaction rules error:",
+          error
+        );
+      }
+    }
+
+    loadTransactionRules();
+  }, []);
+
+  // ========================================
+  // LOAD BUDGET + EXPENSES
   // ========================================
 
   useEffect(() => {
     async function loadBudgetData() {
       try {
-        const [settingsResult, transactionsResult] =
-          await Promise.all([
-            getUserSettings(),
-            getTransactions(),
-          ]);
+        const [
+          settingsResult,
+          transactionsResult,
+        ] = await Promise.all([
+          getUserSettings(),
+          getTransactions(),
+        ]);
 
-        // Load monthly budget
+        // Monthly budget
         if (
           settingsResult.data &&
-          settingsResult.data.monthly_budget !== undefined
+          settingsResult.data.monthly_budget !==
+            undefined
         ) {
           setMonthlyBudget(
             Number(
@@ -82,7 +143,7 @@ function TransactionForm({
           );
         }
 
-        // Calculate current month's expenses
+        // Current month expenses
         const transactions =
           transactionsResult.data || [];
 
@@ -103,8 +164,7 @@ function TransactionForm({
             );
 
             return (
-              date.getMonth() ===
-                now.getMonth() &&
+              date.getMonth() === now.getMonth() &&
               date.getFullYear() ===
                 now.getFullYear()
             );
@@ -140,9 +200,10 @@ function TransactionForm({
     }
 
     if (accounts.length > 0) {
-      const accountStillExists = accounts.some(
-        (item) => item.name === account
-      );
+      const accountStillExists =
+        accounts.some(
+          (item) => item.name === account
+        );
 
       if (!accountStillExists) {
         setAccount(accounts[0].name);
@@ -159,35 +220,50 @@ function TransactionForm({
   // ========================================
 
   useEffect(() => {
-    if (editingTransaction) {
-      setTitle(
-        editingTransaction.description ||
-          editingTransaction.title ||
-          ""
-      );
-
-      setAmount(
-        editingTransaction.amount || ""
-      );
-
-      setCategory(
-        editingTransaction.type || "Expense"
-      );
-
-      setSelectedCategory(
-        editingTransaction.category ||
-          (editingTransaction.type === "Income"
-            ? "Salary"
-            : "Food")
-      );
-
-      setAccount(
-        editingTransaction.account ||
-          accounts[0]?.name ||
-          "Cash Wallet"
-      );
+    if (!editingTransaction) {
+      return;
     }
-  }, [editingTransaction, accounts]);
+
+    const existingTitle =
+      editingTransaction.description ||
+      editingTransaction.title ||
+      "";
+
+    const existingType =
+      editingTransaction.type || "Expense";
+
+    const existingCategory =
+      editingTransaction.category ||
+      (existingType === "Income"
+        ? "Salary"
+        : "Food");
+
+    setTitle(existingTitle);
+
+    setAmount(
+      editingTransaction.amount || ""
+    );
+
+    setCategory(existingType);
+
+    setSelectedCategory(existingCategory);
+
+    // Editing an existing transaction should
+    // not automatically change its category.
+    setCategoryManuallySelected(true);
+
+    setAutoDetectedCategory(null);
+    setLearnedCategory(null);
+
+    setAccount(
+      editingTransaction.account ||
+        accounts[0]?.name ||
+        "Cash Wallet"
+    );
+  }, [
+    editingTransaction,
+    accounts,
+  ]);
 
   // ========================================
   // BUDGET CALCULATION
@@ -227,97 +303,269 @@ function TransactionForm({
   }
 
   // ========================================
-  // CATEGORY DETECTION
+  // FIND USER'S LEARNED CATEGORY
   // ========================================
 
-  function detectCategory(text, type) {
-    if (type === "Income") {
-      return selectedCategory || "Salary";
+  function findLearnedCategory(text, type) {
+    if (!text.trim()) {
+      return null;
     }
 
-    const lower = text.toLowerCase();
+    const normalizedText = text
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, " ");
 
-    if (
-      lower.includes("swiggy") ||
-      lower.includes("zomato") ||
-      lower.includes("food") ||
-      lower.includes("pizza") ||
-      lower.includes("burger") ||
-      lower.includes("tea") ||
-      lower.includes("coffee")
-    ) {
-      return "Food";
-    }
+    const matchingRule = transactionRules
+      .filter(
+        (rule) =>
+          rule.transaction_type === type &&
+          normalizedText.includes(
+            rule.keyword
+          )
+      )
+      .sort(
+        (a, b) =>
+          b.keyword.length -
+          a.keyword.length
+      )[0];
 
-    if (
-      lower.includes("uber") ||
-      lower.includes("ola") ||
-      lower.includes("fuel") ||
-      lower.includes("petrol") ||
-      lower.includes("bus") ||
-      lower.includes("flight") ||
-      lower.includes("metro")
-    ) {
-      return "Travel";
-    }
-
-    if (
-      lower.includes("amazon") ||
-      lower.includes("flipkart") ||
-      lower.includes("myntra") ||
-      lower.includes("shopping") ||
-      lower.includes("clothes")
-    ) {
-      return "Shopping";
-    }
-
-    if (
-      lower.includes("recharge") ||
-      lower.includes("jio") ||
-      lower.includes("airtel") ||
-      lower.includes("wifi") ||
-      lower.includes("bill") ||
-      lower.includes("rent")
-    ) {
-      return "Bills";
-    }
-
-    if (
-      lower.includes("medicine") ||
-      lower.includes("doctor") ||
-      lower.includes("hospital") ||
-      lower.includes("pharmacy")
-    ) {
-      return "Health";
-    }
-
-    if (
-      lower.includes("course") ||
-      lower.includes("book") ||
-      lower.includes("college") ||
-      lower.includes("fee") ||
-      lower.includes("tuition")
-    ) {
-      return "Education";
-    }
-
-    return selectedCategory || "Other";
+    return matchingRule || null;
   }
+
+  // ========================================
+  // TITLE CHANGE + SMART DETECTION
+  // ========================================
 
   function handleTitleChange(value) {
     setTitle(value);
 
-    if (category === "Income") {
+    setLearnedCategory(null);
+    setAutoDetectedCategory(null);
+
+    if (!value.trim()) {
       return;
     }
 
-    const detected = detectCategory(
-      value,
-      category
-    );
+    const transactionType =
+      category === "Income"
+        ? "Income"
+        : "Expense";
 
-    if (detected !== "Other") {
+    // ----------------------------------------
+    // FIRST: USER'S LEARNED RULE
+    // ----------------------------------------
+
+    const learnedRule =
+      findLearnedCategory(
+        value,
+        transactionType
+      );
+
+    if (learnedRule) {
+      setSelectedCategory(
+        learnedRule.category
+      );
+
+      setLearnedCategory(
+        learnedRule.category
+      );
+
+      setCategoryManuallySelected(false);
+
+      return;
+    }
+
+    // ----------------------------------------
+    // SECOND: BUILT-IN DETECTOR
+    // ----------------------------------------
+
+    if (categoryManuallySelected) {
+      return;
+    }
+
+    const detected =
+      detectTransactionCategory(
+        value,
+        transactionType
+      );
+
+    if (detected) {
       setSelectedCategory(detected);
+      setAutoDetectedCategory(detected);
+    }
+  }
+
+  // ========================================
+  // CHANGE TRANSACTION TYPE
+  // ========================================
+
+  function handleExpenseType() {
+    setCategory("Expense");
+
+    setCategoryManuallySelected(false);
+    setLearnedCategory(null);
+    setAutoDetectedCategory(null);
+
+    const learnedRule =
+      findLearnedCategory(
+        title,
+        "Expense"
+      );
+
+    if (learnedRule) {
+      setSelectedCategory(
+        learnedRule.category
+      );
+
+      setLearnedCategory(
+        learnedRule.category
+      );
+
+      return;
+    }
+
+    const detected =
+      detectTransactionCategory(
+        title,
+        "Expense"
+      );
+
+    if (detected) {
+      setSelectedCategory(detected);
+      setAutoDetectedCategory(detected);
+    } else {
+      setSelectedCategory("Food");
+    }
+  }
+
+  function handleIncomeType() {
+    setCategory("Income");
+
+    setCategoryManuallySelected(false);
+    setLearnedCategory(null);
+    setAutoDetectedCategory(null);
+
+    const learnedRule =
+      findLearnedCategory(
+        title,
+        "Income"
+      );
+
+    if (learnedRule) {
+      setSelectedCategory(
+        learnedRule.category
+      );
+
+      setLearnedCategory(
+        learnedRule.category
+      );
+
+      return;
+    }
+
+    const detected =
+      detectTransactionCategory(
+        title,
+        "Income"
+      );
+
+    if (detected) {
+      setSelectedCategory(detected);
+      setAutoDetectedCategory(detected);
+    } else {
+      setSelectedCategory("Salary");
+    }
+  }
+
+  // ========================================
+  // MANUAL CATEGORY SELECTION
+  // ========================================
+
+  async function handleManualCategorySelect(
+    categoryName
+  ) {
+    setSelectedCategory(categoryName);
+
+    setCategoryManuallySelected(true);
+
+    setAutoDetectedCategory(null);
+    setLearnedCategory(null);
+
+    if (!title.trim()) {
+      return;
+    }
+
+    const transactionType =
+      category === "Income"
+        ? "Income"
+        : "Expense";
+
+    const words = title
+      .toLowerCase()
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+
+    if (words.length === 0) {
+      return;
+    }
+
+    // First word becomes the learned keyword.
+    //
+    // Swiggy lunch
+    //      ↓
+    // swiggy → chosen category
+    //
+    // Uber college
+    //      ↓
+    // uber → chosen category
+
+    const keyword = words[0];
+
+    try {
+      const { data, error } =
+        await saveTransactionRule(
+          keyword,
+          categoryName,
+          transactionType
+        );
+
+      if (error) {
+        console.error(
+          "Could not save transaction rule:",
+          error
+        );
+
+        return;
+      }
+
+      if (data) {
+        setTransactionRules(
+          (previousRules) => {
+            const filteredRules =
+              previousRules.filter(
+                (rule) =>
+                  !(
+                    rule.keyword ===
+                      data.keyword &&
+                    rule.transaction_type ===
+                      data.transaction_type
+                  )
+              );
+
+            return [
+              data,
+              ...filteredRules,
+            ];
+          }
+        );
+      }
+    } catch (error) {
+      console.error(
+        "Smart rule save error:",
+        error
+      );
     }
   }
 
@@ -332,6 +580,7 @@ function TransactionForm({
       alert(
         "Please provide both title and amount."
       );
+
       return;
     }
 
@@ -339,6 +588,7 @@ function TransactionForm({
       alert(
         "Amount must be greater than 0."
       );
+
       return;
     }
 
@@ -347,21 +597,42 @@ function TransactionForm({
         ? "Income"
         : "Expense";
 
-    const finalCategory =
-      selectedCategory ||
-      detectCategory(
+    // ----------------------------------------
+    // CHECK LEARNED RULE FIRST
+    // ----------------------------------------
+
+    const learnedRule =
+      findLearnedCategory(
         title,
         transactionType
       );
 
+    // ----------------------------------------
+    // BUILT-IN DETECTION SECOND
+    // ----------------------------------------
+
+    const detectedCategory =
+      detectTransactionCategory(
+        title,
+        transactionType
+      );
+
+    const finalCategory =
+      categoryManuallySelected
+        ? selectedCategory
+        : learnedRule
+        ? learnedRule.category
+        : detectedCategory ||
+          selectedCategory ||
+          (transactionType === "Income"
+            ? "Salary"
+            : "Other");
+
     const transaction = {
-      // Keep existing ID only for editing.
       id: editingTransaction
         ? editingTransaction.id
         : undefined,
 
-      // Your Supabase table uses "description"
-      // instead of "title".
       description: title.trim(),
 
       amount: Number(amount),
@@ -375,7 +646,6 @@ function TransactionForm({
         accounts[0]?.name ||
         "Cash Wallet",
 
-      // Find the actual account ID
       account_id:
         accounts.find(
           (item) => item.name === account
@@ -406,6 +676,10 @@ function TransactionForm({
       }
     }, 900);
   }
+
+  // ========================================
+  // CURRENT CATEGORY LIST
+  // ========================================
 
   const currentCategories =
     category === "Income"
@@ -479,10 +753,7 @@ function TransactionForm({
               ? "active-expense"
               : ""
           }`}
-          onClick={() => {
-            setCategory("Expense");
-            setSelectedCategory("Food");
-          }}
+          onClick={handleExpenseType}
         >
           <span>📉 Expense</span>
         </button>
@@ -494,10 +765,7 @@ function TransactionForm({
               ? "active-income"
               : ""
           }`}
-          onClick={() => {
-            setCategory("Income");
-            setSelectedCategory("Salary");
-          }}
+          onClick={handleIncomeType}
         >
           <span>📈 Income</span>
         </button>
@@ -581,6 +849,48 @@ function TransactionForm({
             )
           }
         />
+
+        {/* LEARNED CATEGORY MESSAGE */}
+
+        {learnedCategory && (
+          <div className="auto-category-detected">
+            <span className="auto-category-icon">
+              🧠
+            </span>
+
+            <span>
+              Based on your previous choice:{" "}
+              <strong>
+                {getCategoryIcon(
+                  learnedCategory
+                )}{" "}
+                {learnedCategory}
+              </strong>
+            </span>
+          </div>
+        )}
+
+        {/* BUILT-IN AUTO DETECTION MESSAGE */}
+
+        {autoDetectedCategory &&
+          !categoryManuallySelected &&
+          !learnedCategory && (
+            <div className="auto-category-detected">
+              <span className="auto-category-icon">
+                ✨
+              </span>
+
+              <span>
+                Auto-detected as{" "}
+                <strong>
+                  {getCategoryIcon(
+                    autoDetectedCategory
+                  )}{" "}
+                  {autoDetectedCategory}
+                </strong>
+              </span>
+            </div>
+          )}
       </div>
 
       {/* CATEGORY */}
@@ -594,13 +904,12 @@ function TransactionForm({
               type="button"
               key={cat.label}
               className={`category-pill ${
-                selectedCategory ===
-                cat.label
+                selectedCategory === cat.label
                   ? "selected"
                   : ""
               }`}
               onClick={() =>
-                setSelectedCategory(
+                handleManualCategorySelect(
                   cat.label
                 )
               }

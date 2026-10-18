@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 
-import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
+import Sidebar from "../components/layout/Sidebar";
+import Navbar from "../components/layout/Navbar";
 import ExpensePieChart from "../components/charts/ExpensePieChart";
-import TransactionForm from "../components/TransactionForm";
+import TransactionForm from "../components/transactions/TransactionForm";
 
 import {
   getTransactions,
@@ -11,7 +11,7 @@ import {
   createTransaction,
 } from "../lib/database";
 
-import "../components/TransactionModal.css";
+import "../components/transactions/TransactionModal.css";
 import "../styles/reports.css";
 
 function Reports() {

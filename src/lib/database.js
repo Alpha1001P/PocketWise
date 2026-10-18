@@ -284,3 +284,82 @@ export async function saveUserSettings(settings) {
     error,
   };
 }
+// ============================================================
+// TRANSACTION SMART RULES
+// ============================================================
+
+export async function getTransactionRules() {
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    return {
+      data: [],
+      error: userError || new Error("User not logged in"),
+    };
+  }
+
+  const { data, error } = await supabase
+    .from("transaction_rules")
+    .select("*")
+    .eq("user_id", user.id)
+    .order("updated_at", { ascending: false });
+
+  return {
+    data: data || [],
+    error,
+  };
+}
+
+export async function saveTransactionRule(
+  keyword,
+  category,
+  transactionType = "Expense"
+) {
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    return {
+      data: null,
+      error: userError || new Error("User not logged in"),
+    };
+  }
+
+  const cleanKeyword = keyword?.toLowerCase().trim();
+
+  if (!cleanKeyword || !category) {
+    return {
+      data: null,
+      error: new Error("Keyword and category are required"),
+    };
+  }
+
+  const { data, error } = await supabase
+    .from("transaction_rules")
+    .upsert(
+      [
+        {
+          user_id: user.id,
+          keyword: cleanKeyword,
+          category,
+          transaction_type: transactionType,
+          updated_at: new Date().toISOString(),
+        },
+      ],
+      {
+        onConflict: "user_id,keyword,transaction_type",
+      }
+    )
+    .select()
+    .single();
+
+  return {
+    data,
+    error,
+  };
+}

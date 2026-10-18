@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
+import Sidebar from "../components/layout/Sidebar";
+import Navbar from "../components/layout/Navbar";
 
 import "../styles/layout.css";
 import "../components/dashboard/dashboard.css";
 import "../styles/dashboard.css";
 import "../styles/navbar.css";
-import "../components/TransactionModal.css";
+import "../components/transactions/TransactionModal.css";
 import "../styles/modals.css";
 
 import ManageBudgetModal from "../components/dashboard/ManageBudgetModal";
-import TransactionForm from "../components/TransactionForm";
+import TransactionForm from "../components/transactions/TransactionForm";
 import BudgetCard from "../components/dashboard/BudgetCard";
 import AccountsSection from "../components/dashboard/AccountsSection";
 import RecentTransactions from "../components/dashboard/RecentTransactions";
 import SpendingTrendChart from "../components/charts/SpendingTrendChart";
 import DashboardFooter from "../components/dashboard/DashboardFooter";
-import AddAccountModal from "../components/AddAccountModal";
-import EditAccountModal from "../components/EditAccountModal";
+import AddAccountModal from "../components/accounts/AddAccountModal";
+import EditAccountModal from "../components/accounts/EditAccountModal";
 
 import { getBudget, saveBudget } from "../utils/budget";
 

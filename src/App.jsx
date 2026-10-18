@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-
 import { supabase } from "./lib/supabase";
 
 import Login from "./pages/Login";
@@ -10,12 +9,17 @@ import Calendar from "./pages/Calendar";
 import Settings from "./pages/Settings";
 import TransactionManagement from "./pages/TransactionManagement";
 
+import MobileDashboard from "./mobile/pages/MobileDashboard";
+import MobileTransactions from "./mobile/pages/MobileTransactions";
+import MobileReports from "./mobile/pages/MobileReports";
+import MobileSettings from "./mobile/pages/MobileSettings";
+import MobileBudget from "./mobile/pages/MobileBudget";
+
 function App() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check existing Supabase session
     async function checkSession() {
       const { data, error } = await supabase.auth.getSession();
 
@@ -31,7 +35,6 @@ function App() {
 
     checkSession();
 
-    // Listen for login/logout/auth changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, currentSession) => {
@@ -44,16 +47,12 @@ function App() {
     };
   }, []);
 
-  // Loading screen
   if (loading) {
     return (
       <div className="app-loading">
         <div className="app-loading-icon">💰</div>
-
         <h1>PocketWise</h1>
-
         <p>Loading your finances...</p>
-
         <div className="loading-spinner"></div>
       </div>
     );
@@ -65,7 +64,14 @@ function App() {
       <Route
         path="/"
         element={
-          session ? <Dashboard /> : <Navigate to="/login" replace />
+          session ? (
+            <ResponsivePage
+              DesktopComponent={Dashboard}
+              MobileComponent={MobileDashboard}
+            />
+          ) : (
+            <Navigate to="/login" replace />
+          )
         }
       />
 
@@ -73,7 +79,11 @@ function App() {
       <Route
         path="/login"
         element={
-          session ? <Navigate to="/" replace /> : <Login />
+          session ? (
+            <Navigate to="/" replace />
+          ) : (
+            <Login />
+          )
         }
       />
 
@@ -82,7 +92,10 @@ function App() {
         path="/transactions"
         element={
           session ? (
-            <TransactionManagement />
+            <ResponsivePage
+              DesktopComponent={TransactionManagement}
+              MobileComponent={MobileTransactions}
+            />
           ) : (
             <Navigate to="/login" replace />
           )
@@ -93,7 +106,14 @@ function App() {
       <Route
         path="/reports"
         element={
-          session ? <Reports /> : <Navigate to="/login" replace />
+          session ? (
+            <ResponsivePage
+              DesktopComponent={Reports}
+              MobileComponent={MobileReports}
+            />
+          ) : (
+            <Navigate to="/login" replace />
+          )
         }
       />
 
@@ -101,7 +121,29 @@ function App() {
       <Route
         path="/calendar"
         element={
-          session ? <Calendar /> : <Navigate to="/login" replace />
+          session ? (
+            <ResponsivePage
+              DesktopComponent={Calendar}
+              MobileComponent={MobileReports}
+            />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+
+      {/* Budget (mobile only — desktop uses Settings) */}
+      <Route
+        path="/budget"
+        element={
+          session ? (
+            <ResponsivePage
+              DesktopComponent={Settings}
+              MobileComponent={MobileBudget}
+            />
+          ) : (
+            <Navigate to="/login" replace />
+          )
         }
       />
 
@@ -109,19 +151,53 @@ function App() {
       <Route
         path="/settings"
         element={
-          session ? <Settings /> : <Navigate to="/login" replace />
+          session ? (
+            <ResponsivePage
+              DesktopComponent={Settings}
+              MobileComponent={MobileSettings}
+            />
+          ) : (
+            <Navigate to="/login" replace />
+          )
         }
       />
 
-      {/* Unknown URL */}
+      {/* Unknown route */}
       <Route
         path="*"
         element={
-          <Navigate to={session ? "/" : "/login"} replace />
+          <Navigate
+            to={session ? "/" : "/login"}
+            replace
+          />
         }
       />
     </Routes>
   );
+}
+
+function ResponsivePage({ DesktopComponent, MobileComponent }) {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth <= 767;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 767);
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return isMobile ? <MobileComponent /> : <DesktopComponent />;
 }
 
 export default App;

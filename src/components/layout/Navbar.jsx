@@ -1,17 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
-import "../styles/navbar.css";
+import "../../styles/navbar.css";
 
 import {
   getNotifications,
   markAllRead,
   clearNotifications,
-} from "../utils/notifications";
+} from "../../utils/notifications";
 
 import {
   getTransactions,
   getAccounts,
   getUserSettings,
-} from "../lib/database";
+} from "../../lib/database";
 
 function Navbar({ onAddTransaction }) {
   const [notifications, setNotifications] = useState([]);

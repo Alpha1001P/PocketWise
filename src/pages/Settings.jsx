@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 
-import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
-import TransactionForm from "../components/TransactionForm";
+import Sidebar from "../components/layout/Sidebar";
+import Navbar from "../components/layout/Navbar";
+import TransactionForm from "../components/transactions/TransactionForm";
 
 import "../styles/settings.css";
-import "../components/TransactionModal.css";
+import "../components/transactions/TransactionModal.css";
 
 function Settings() {
   const [showTransactionModal, setShowTransactionModal] =

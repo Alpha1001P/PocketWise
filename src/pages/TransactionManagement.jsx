@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
-import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
-import TransactionCard from "../components/TransactionCard";
-import TransactionForm from "../components/TransactionForm";
+import Sidebar from "../components/layout/Sidebar";
+import Navbar from "../components/layout/Navbar";
+import TransactionCard from "../components/transactions/TransactionCard";
+import TransactionForm from "../components/transactions/TransactionForm";
 
 import {
   getTransactions,
@@ -12,7 +12,7 @@ import {
 } from "../lib/database";
 
 import "../styles/transactions.css";
-import "../components/TransactionModal.css";
+import "../components/transactions/TransactionModal.css";
 
 function TransactionManagement() {
   const [transactions, setTransactions] = useState([]);

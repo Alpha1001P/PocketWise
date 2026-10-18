@@ -2,13 +2,13 @@ import { useState } from "react";
 
 import "./TransactionCard.css";
 import TransactionModal from "./TransactionModal";
-import "../styles/transactions.css";
+import "../../styles/transactions.css";
 
 import {
   updateTransaction,
   deleteTransaction,
   createTransaction,
-} from "../lib/database";
+} from "../../lib/database";
 
 function TransactionCard({
   transaction,

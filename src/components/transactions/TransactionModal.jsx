@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/modals.css";
+import "../../styles/modals.css";
 import "./TransactionModal.css";
 
 const categoryIcons = {

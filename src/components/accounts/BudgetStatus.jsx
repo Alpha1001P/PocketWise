@@ -1,4 +1,4 @@
-import { getBudget } from "../utils/budget";
+import { getBudget } from "../../utils/budget";
 
 
 function BudgetStatus({
