@@ -7,7 +7,7 @@ import MobileBottomNav from "../components/MobileBottomNav";
 import MobileTransactionForm from "../components/MobileTransactionForm";
 import MobileAddAccountModal from "../components/MobileAddAccountModal";
 
-import { getAccounts, getTransactions } from "../../lib/database";
+import { getAccounts, getTransactions, deleteAccount } from "../../lib/database";
 import { getCategoryIcon } from "../../utils/categoryDetector";
 
 import "../styles/mobile.css";
@@ -42,6 +42,20 @@ function MobileDashboard() {
     }
 
     setLoading(false);
+  }
+
+  async function handleDeleteAccount(account) {
+    if (!window.confirm(`Are you sure you want to delete "${account.name}"?`)) {
+      return;
+    }
+
+    const { error } = await deleteAccount(account.id);
+    if (error) {
+      alert(error.message || "Failed to delete account.");
+      return;
+    }
+
+    loadDashboard();
   }
 
   const totalBalance = accounts.reduce(
@@ -181,8 +195,31 @@ function MobileDashboard() {
                           <div className="m-account-name">{account.name}</div>
                           <div className="m-account-type">{account.type || "Standard"}</div>
                         </div>
-                        <div className="m-account-balance">
-                          ₹{Number(account.balance || 0).toLocaleString("en-IN")}
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                          <div className="m-account-balance">
+                            ₹{Number(account.balance || 0).toLocaleString("en-IN")}
+                          </div>
+                          <button
+                            type="button"
+                            title="Delete Account"
+                            onClick={() => handleDeleteAccount(account)}
+                            style={{
+                              background: "none",
+                              border: "none",
+                              color: "var(--m-text-3)",
+                              fontSize: "15px",
+                              cursor: "pointer",
+                              padding: "4px",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              borderRadius: "6px",
+                            }}
+                            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--m-expense)")}
+                            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--m-text-3)")}
+                          >
+                            🗑️
+                          </button>
                         </div>
                       </div>
                     ))}
