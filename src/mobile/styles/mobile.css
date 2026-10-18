@@ -122,95 +122,189 @@
 }
 
 /* ═══════════════════════════════════════
-   HERO BALANCE CARD
+   HERO BALANCE CARD (LUXURY FINTECH)
 ═══════════════════════════════════════ */
 
 .m-balance-hero {
-  background: linear-gradient(140deg, #4f46e5 0%, #6366f1 60%, #818cf8 100%);
+  background: radial-gradient(circle at 100% 0%, #818cf8 0%, #6366f1 45%, #4338ca 100%);
   border-radius: var(--m-radius-xl);
-  padding: 24px 22px 20px;
+  padding: 22px 20px 20px;
   color: white;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 28px rgba(79, 70, 229, 0.32);
+  box-shadow: 0 16px 36px -10px rgba(79, 70, 229, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
 }
 
 .m-balance-hero::before {
   content: '';
   position: absolute;
-  top: -30px;
-  right: -30px;
-  width: 140px;
-  height: 140px;
+  top: -40px;
+  right: -40px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 70%);
   pointer-events: none;
 }
 
 .m-balance-hero::after {
   content: '';
   position: absolute;
-  bottom: -40px;
-  left: 20px;
-  width: 110px;
-  height: 110px;
+  bottom: -60px;
+  left: -20px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: radial-gradient(circle, rgba(165, 180, 252, 0.25) 0%, rgba(255, 255, 255, 0) 75%);
   pointer-events: none;
+}
+
+/* Card Top bar */
+.m-balance-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.m-balance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.m-balance-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px #34d399;
+}
+
+.m-balance-chip {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.12);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* Main Balance */
+.m-balance-main {
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
 }
 
 .m-balance-label {
   font-size: 11px;
   font-weight: 700;
-  opacity: 0.8;
+  opacity: 0.85;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin: 0 0 6px;
 }
 
+.m-currency-symbol {
+  font-size: 26px;
+  font-weight: 700;
+  margin-right: 2px;
+  opacity: 0.9;
+}
+
 .m-balance-amount {
-  font-size: 36px;
-  font-weight: 800;
+  font-size: 38px;
+  font-weight: 850;
   letter-spacing: -1.2px;
-  line-height: 1.1;
-  margin: 0 0 4px;
+  line-height: 1;
+  margin: 0 0 6px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 }
 
 .m-balance-sub {
   font-size: 12px;
-  opacity: 0.75;
-  margin: 0 0 18px;
+  opacity: 0.8;
+  margin: 0;
+  font-weight: 500;
 }
 
+/* 2-col Stats Row */
 .m-balance-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .m-balance-stat {
   background: rgba(255, 255, 255, 0.14);
-  border-radius: var(--m-radius-sm);
+  border-radius: 14px;
   padding: 10px 12px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.m-stat-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.m-stat-badge-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.m-stat-badge-icon.income {
+  background: #10b981;
+  color: white;
+}
+
+.m-stat-badge-icon.expense {
+  background: #f43f5e;
+  color: white;
 }
 
 .m-balance-stat-label {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  opacity: 0.8;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-bottom: 4px;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.2px;
 }
 
 .m-balance-stat-amount {
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 17px;
+  font-weight: 850;
   letter-spacing: -0.4px;
+}
+
+.m-balance-stat-amount.income {
+  color: #a7f3d0;
+}
+
+.m-balance-stat-amount.expense {
+  color: #fecdd3;
 }
 
 /* ═══════════════════════════════════════
