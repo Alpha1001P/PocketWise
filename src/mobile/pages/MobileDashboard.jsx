@@ -63,13 +63,24 @@ function MobileDashboard() {
     0
   );
 
-  const totalIncome = transactions
-    .filter((transaction) => transaction.type === "Income")
-    .reduce((total, transaction) => total + Number(transaction.amount || 0), 0);
+  const now = new Date();
+  const currentMonth = now.getMonth();
+  const currentYear = now.getFullYear();
 
-  const totalExpense = transactions
-    .filter((transaction) => transaction.type === "Expense")
-    .reduce((total, transaction) => total + Number(transaction.amount || 0), 0);
+  // Scope to Current Month only
+  const currentMonthTransactions = transactions.filter((t) => {
+    if (!t.date) return false;
+    const d = new Date(t.date);
+    return d.getMonth() === currentMonth && d.getFullYear() === currentYear;
+  });
+
+  const currentMonthIncome = currentMonthTransactions
+    .filter((t) => t.type === "Income")
+    .reduce((total, t) => total + Number(t.amount || 0), 0);
+
+  const currentMonthExpense = currentMonthTransactions
+    .filter((t) => t.type === "Expense")
+    .reduce((total, t) => total + Number(t.amount || 0), 0);
 
   const recentTransactions = [...transactions]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
@@ -82,8 +93,10 @@ function MobileDashboard() {
 
   const budgetPercentage =
     monthlyBudget > 0
-      ? Math.min((totalExpense / monthlyBudget) * 100, 100)
+      ? Math.min((currentMonthExpense / monthlyBudget) * 100, 100)
       : 0;
+
+  const currentMonthName = now.toLocaleDateString("en-US", { month: "long" });
 
   return (
     <div className="mobile-app">
@@ -105,14 +118,19 @@ function MobileDashboard() {
               {/* Hero Net Worth Card */}
               <MobileBalanceCard
                 balance={totalBalance}
-                totalIncome={totalIncome}
-                totalExpense={totalExpense}
+                totalIncome={currentMonthIncome}
+                totalExpense={currentMonthExpense}
               />
 
               {/* Monthly Budget Tracker Card */}
               <section className="m-card">
                 <div className="m-card-header">
-                  <h2 className="m-card-title">Monthly Budget</h2>
+                  <div>
+                    <h2 className="m-card-title">{currentMonthName} Budget</h2>
+                    <span style={{ fontSize: "11px", color: "var(--m-text-3)", fontWeight: "500" }}>
+                      Resets automatically on the 1st
+                    </span>
+                  </div>
                   <button
                     className="m-card-action"
                     onClick={() => navigate("/budget")}
@@ -124,7 +142,7 @@ function MobileDashboard() {
                 {monthlyBudget > 0 ? (
                   <>
                     <div className="m-budget-row">
-                      <span>Spent: ₹{totalExpense.toLocaleString("en-IN")}</span>
+                      <span>Spent: ₹{currentMonthExpense.toLocaleString("en-IN")}</span>
                       <span>Limit: ₹{monthlyBudget.toLocaleString("en-IN")}</span>
                     </div>
 
@@ -136,7 +154,7 @@ function MobileDashboard() {
                     </div>
 
                     <div className="m-budget-caption">
-                      {budgetPercentage.toFixed(0)}% of monthly budget utilized
+                      {budgetPercentage.toFixed(0)}% of {currentMonthName} budget utilized
                     </div>
                   </>
                 ) : (

@@ -13,7 +13,7 @@ function MobileBalanceCard({ balance = 0, totalIncome = 0, totalExpense = 0 }) {
       <div className="m-balance-row">
         <div className="m-balance-stat">
           <div className="m-balance-stat-label">
-            <span>↓</span> Income
+            <span>↓</span> This Month In
           </div>
           <div className="m-balance-stat-amount">
             +₹{Number(totalIncome || 0).toLocaleString("en-IN")}
@@ -22,7 +22,7 @@ function MobileBalanceCard({ balance = 0, totalIncome = 0, totalExpense = 0 }) {
 
         <div className="m-balance-stat">
           <div className="m-balance-stat-label">
-            <span>↑</span> Expense
+            <span>↑</span> This Month Out
           </div>
           <div className="m-balance-stat-amount">
             -₹{Number(totalExpense || 0).toLocaleString("en-IN")}
