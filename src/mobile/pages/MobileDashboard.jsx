@@ -82,7 +82,7 @@ function MobileDashboard() {
     .filter((t) => t.type === "Expense")
     .reduce((total, t) => total + Number(t.amount || 0), 0);
 
-  const recentTransactions = [...transactions]
+  const recentTransactions = [...currentMonthTransactions]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 5);
 
@@ -245,24 +245,29 @@ function MobileDashboard() {
                 )}
               </section>
 
-              {/* Recent Transactions Card */}
+              {/* Recent Transactions Card (Scoped to current month) */}
               <section className="m-card">
                 <div className="m-card-header">
-                  <h2 className="m-card-title">Recent Activity</h2>
+                  <div>
+                    <h2 className="m-card-title">{currentMonthName} Activity</h2>
+                    <span style={{ fontSize: "11px", color: "var(--m-text-3)", fontWeight: "500" }}>
+                      Showing latest for this month
+                    </span>
+                  </div>
                   <button
                     className="m-card-action"
                     onClick={() => navigate("/transactions")}
                   >
-                    See All
+                    All History
                   </button>
                 </div>
 
                 {recentTransactions.length === 0 ? (
                   <div className="m-empty">
                     <span className="m-empty-icon">🧾</span>
-                    <strong className="m-empty-title">No activity yet</strong>
+                    <strong className="m-empty-title">No transactions in {currentMonthName}</strong>
                     <span className="m-empty-desc">
-                      Tap the '+' button below to record your first transaction.
+                      Previous months' records are archived in Reports and Transactions.
                     </span>
                   </div>
                 ) : (
