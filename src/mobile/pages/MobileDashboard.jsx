@@ -5,6 +5,7 @@ import MobileHeader from "../components/MobileHeader";
 import MobileBalanceCard from "../components/MobileBalanceCard";
 import MobileBottomNav from "../components/MobileBottomNav";
 import MobileTransactionForm from "../components/MobileTransactionForm";
+import MobileAddAccountModal from "../components/MobileAddAccountModal";
 
 import { getAccounts, getTransactions } from "../../lib/database";
 import { getCategoryIcon } from "../../utils/categoryDetector";
@@ -18,6 +19,7 @@ function MobileDashboard() {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showAddAccount, setShowAddAccount] = useState(false);
 
   useEffect(() => {
     loadDashboard();
@@ -146,10 +148,11 @@ function MobileDashboard() {
                 <div className="m-card-header">
                   <h2 className="m-card-title">Accounts ({accounts.length})</h2>
                   <button
+                    type="button"
                     className="m-card-action"
-                    onClick={() => navigate("/settings")}
+                    onClick={() => setShowAddAccount(true)}
                   >
-                    View All
+                    + Add Account
                   </button>
                 </div>
 
@@ -158,6 +161,14 @@ function MobileDashboard() {
                     <span className="m-empty-icon">💳</span>
                     <strong className="m-empty-title">No accounts added</strong>
                     <span className="m-empty-desc">Add checking, cash or savings accounts.</span>
+                    <button
+                      type="button"
+                      className="m-btn m-btn-primary m-btn-sm"
+                      style={{ marginTop: "8px" }}
+                      onClick={() => setShowAddAccount(true)}
+                    >
+                      + Add Your First Account
+                    </button>
                   </div>
                 ) : (
                   <div className="m-account-list">
@@ -246,6 +257,12 @@ function MobileDashboard() {
           onClose={() => setShowAddForm(false)}
         />
       )}
+
+      <MobileAddAccountModal
+        isOpen={showAddAccount}
+        onClose={() => setShowAddAccount(false)}
+        onSuccess={() => loadDashboard()}
+      />
 
       <MobileBottomNav onAddTransaction={() => setShowAddForm(true)} />
     </div>
