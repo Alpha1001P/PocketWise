@@ -9,6 +9,7 @@ import {
   getAccounts,
   getTransactions,
   createTransaction,
+  deleteTransaction,
 } from "../../lib/database";
 
 import { getCategoryIcon } from "../../utils/categoryDetector";
@@ -46,6 +47,20 @@ function MobileTransactions() {
     setTransactions(transactionsResult.data || []);
     setAccounts(accountsResult.data || []);
     setLoading(false);
+  }
+
+  async function handleDeleteTransaction(tx) {
+    if (!window.confirm(`Delete transaction "${tx.description || tx.category || "Transaction"}" of ₹${tx.amount}?`)) {
+      return;
+    }
+
+    const { error } = await deleteTransaction(tx.id);
+    if (error) {
+      alert(error.message || "Failed to delete transaction.");
+      return;
+    }
+
+    loadMobileData();
   }
 
   const filteredTransactions = useMemo(() => {
@@ -176,9 +191,32 @@ function MobileTransactions() {
                         </div>
                       </div>
 
-                      <div className={`m-tx-amount ${typeClass}`}>
-                        {isIncome ? "+" : isTransfer ? "" : "-"}₹
-                        {Number(tx.amount || 0).toLocaleString("en-IN")}
+                      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                        <div className={`m-tx-amount ${typeClass}`}>
+                          {isIncome ? "+" : isTransfer ? "" : "-"}₹
+                          {Number(tx.amount || 0).toLocaleString("en-IN")}
+                        </div>
+                        <button
+                          type="button"
+                          title="Delete transaction"
+                          onClick={() => handleDeleteTransaction(tx)}
+                          style={{
+                            background: "none",
+                            border: "none",
+                            color: "var(--m-text-3)",
+                            fontSize: "14px",
+                            cursor: "pointer",
+                            padding: "4px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            borderRadius: "4px",
+                          }}
+                          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--m-expense)")}
+                          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--m-text-3)")}
+                        >
+                          ✕
+                        </button>
                       </div>
                     </div>
                   );

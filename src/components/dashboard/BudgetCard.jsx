@@ -17,7 +17,7 @@ function BudgetCard({
     selectedAccount === "overall"
       ? null
       : accounts.find(
-          (a) => a.id === Number(selectedAccount)
+          (a) => String(a.id) === String(selectedAccount)
         );
 
   /* =========================
@@ -49,7 +49,12 @@ function BudgetCard({
       return true;
     }
 
-    return transaction.account === selected.name;
+    return (
+      (transaction.account &&
+        transaction.account.toLowerCase() === selected.name.toLowerCase()) ||
+      (transaction.account_id &&
+        String(transaction.account_id) === String(selected.id))
+    );
   });
 
   /* =========================

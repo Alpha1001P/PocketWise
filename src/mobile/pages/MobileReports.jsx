@@ -38,10 +38,14 @@ function MobileReports() {
   const selectedMonthName = MONTHS[currentMonthIndex];
 
   const monthTransactions = useMemo(() => {
+    const currentYear = new Date().getFullYear();
     return transactions.filter((t) => {
       if (!t.date) return false;
       const d = new Date(t.date);
-      return d.getMonth() === currentMonthIndex;
+      return (
+        d.getMonth() === currentMonthIndex &&
+        d.getFullYear() === currentYear
+      );
     });
   }, [transactions, currentMonthIndex]);
 

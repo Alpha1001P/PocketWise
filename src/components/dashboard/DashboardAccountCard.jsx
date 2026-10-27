@@ -6,17 +6,23 @@ function DashboardAccountCard({
 }) {
   // Calculate account balance from transactions
   const accountBalance = transactions.reduce((total, t) => {
-    if (t.account !== account.name) return total;
+    const match =
+      (t.account && t.account.toLowerCase() === (account.name || "").toLowerCase()) ||
+      (t.account_id && String(t.account_id) === String(account.id));
+    if (!match) return total;
     return t.type === "Income"
       ? total + Number(t.amount || 0)
       : total - Number(t.amount || 0);
-  }, 0);
+  }, Number(account.balance || 0));
 
   // Current month expenses for this account
   const now = new Date();
   const currentMonthExpenses = transactions
     .filter((t) => {
-      if (t.account !== account.name || t.type !== "Expense") return false;
+      const match =
+        (t.account && t.account.toLowerCase() === (account.name || "").toLowerCase()) ||
+        (t.account_id && String(t.account_id) === String(account.id));
+      if (!match || t.type !== "Expense") return false;
       const d = new Date(t.date);
       return (
         d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear()

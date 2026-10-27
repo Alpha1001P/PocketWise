@@ -39,7 +39,7 @@ function MobileBudget() {
     .reduce((sum, t) => sum + Number(t.amount || 0), 0);
 
   const totalMonthlyBudget = accounts.reduce(
-    (sum, a) => sum + Number(a.monthly_budget || 0),
+    (sum, a) => sum + Number(a.monthly_budget || a.monthlyBudget || 0),
     0
   );
 
@@ -52,6 +52,7 @@ function MobileBudget() {
     const limitNum = Math.max(0, Number(newLimit) || 0);
     const { error } = await updateAccount(account.id, {
       ...account,
+      monthly_budget: limitNum,
       monthlyBudget: limitNum,
     });
 
@@ -62,7 +63,9 @@ function MobileBudget() {
 
     setAccounts((prev) =>
       prev.map((a) =>
-        a.id === account.id ? { ...a, monthly_budget: limitNum } : a
+        a.id === account.id
+          ? { ...a, monthly_budget: limitNum, monthlyBudget: limitNum }
+          : a
       )
     );
     setEditingAccId(null);
@@ -135,8 +138,14 @@ function MobileBudget() {
                 {accounts.map((account) => {
                   const accExpenses = transactions
                     .filter((t) => {
-                      if (t.account !== account.name || t.type !== "Expense" || !t.date)
-                        return false;
+                      if (t.type !== "Expense" || !t.date) return false;
+                      const isMatch =
+                        (t.account &&
+                          t.account.toLowerCase() ===
+                            (account.name || "").toLowerCase()) ||
+                        (t.account_id &&
+                          String(t.account_id) === String(account.id));
+                      if (!isMatch) return false;
                       const d = new Date(t.date);
                       return (
                         d.getMonth() === now.getMonth() &&
@@ -145,7 +154,9 @@ function MobileBudget() {
                     })
                     .reduce((sum, t) => sum + Number(t.amount || 0), 0);
 
-                  const limit = Number(account.monthly_budget || 0);
+                  const limit = Number(
+                    account.monthly_budget || account.monthlyBudget || 0
+                  );
                   const isEditingThis = editingAccId === account.id;
                   const pct = limit > 0 ? Math.min(100, (accExpenses / limit) * 100) : 0;
 

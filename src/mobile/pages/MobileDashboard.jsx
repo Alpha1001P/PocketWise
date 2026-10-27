@@ -58,10 +58,30 @@ function MobileDashboard() {
     loadDashboard();
   }
 
-  const totalBalance = accounts.reduce(
-    (total, account) => total + Number(account.balance || 0),
-    0
-  );
+  // Calculate live dynamic balance for each account factoring in all transactions
+  const getAccountBalance = (account) => {
+    return transactions.reduce((total, t) => {
+      const match =
+        (t.account && t.account.toLowerCase() === (account.name || "").toLowerCase()) ||
+        (t.account_id && String(t.account_id) === String(account.id));
+      if (!match) return total;
+      return t.type === "Income"
+        ? total + Number(t.amount || 0)
+        : total - Number(t.amount || 0);
+    }, Number(account.balance || 0));
+  };
+
+  // Live total net worth across all accounts and transactions
+  const totalBalance =
+    accounts.length > 0
+      ? accounts.reduce((total, account) => total + getAccountBalance(account), 0)
+      : transactions.reduce(
+          (sum, t) =>
+            t.type === "Income"
+              ? sum + Number(t.amount || 0)
+              : sum - Number(t.amount || 0),
+          0
+        );
 
   const now = new Date();
   const currentMonth = now.getMonth();
@@ -87,7 +107,8 @@ function MobileDashboard() {
     .slice(0, 5);
 
   const monthlyBudget = accounts.reduce(
-    (total, account) => total + Number(account.monthly_budget || 0),
+    (total, account) =>
+      total + Number(account.monthly_budget || account.monthlyBudget || 0),
     0
   );
 
@@ -215,7 +236,7 @@ function MobileDashboard() {
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                           <div className="m-account-balance">
-                            ₹{Number(account.balance || 0).toLocaleString("en-IN")}
+                            ₹{getAccountBalance(account).toLocaleString("en-IN")}
                           </div>
                           <button
                             type="button"

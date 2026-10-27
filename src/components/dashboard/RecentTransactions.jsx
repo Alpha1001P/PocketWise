@@ -24,7 +24,18 @@ function RecentTransactions({
     };
   }, []);
 
-  const recentTransactions = [...transactions]
+  const now = new Date();
+  const currentMonth = now.getMonth();
+  const currentYear = now.getFullYear();
+
+  // Scope to Current Month only
+  const currentMonthTransactions = transactions.filter((t) => {
+    if (!t.date) return false;
+    const d = new Date(t.date);
+    return d.getMonth() === currentMonth && d.getFullYear() === currentYear;
+  });
+
+  const recentTransactions = [...currentMonthTransactions]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 5);
 

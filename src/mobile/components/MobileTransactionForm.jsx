@@ -25,6 +25,13 @@ function MobileTransactionForm({ accounts = [], onSuccess, onClose }) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if ((!accountId || !accountName) && accounts.length > 0) {
+      setAccountId(accounts[0].id);
+      setAccountName(accounts[0].name);
+    }
+  }, [accounts, accountId, accountName]);
+
   const categories = type === "Income" ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
 
   function handleTypeChange(newType) {

@@ -179,14 +179,14 @@ function App() {
 function ResponsivePage({ DesktopComponent, MobileComponent }) {
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== "undefined") {
-      return window.innerWidth <= 767;
+      return window.innerWidth <= 768;
     }
     return false;
   });
 
   useEffect(() => {
     function handleResize() {
-      setIsMobile(window.innerWidth <= 767);
+      setIsMobile(window.innerWidth <= 768);
     }
 
     handleResize();
