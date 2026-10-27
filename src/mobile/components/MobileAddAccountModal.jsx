@@ -7,7 +7,6 @@ const ACCOUNT_TYPES = ["Checking", "Savings", "Cash", "Credit Card", "Investment
 function MobileAddAccountModal({ isOpen, onClose, onSuccess }) {
   const [name, setName] = useState("");
   const [type, setType] = useState("Checking");
-  const [balance, setBalance] = useState("");
   const [icon, setIcon] = useState("💳");
   const [monthlyBudget, setMonthlyBudget] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,7 +27,7 @@ function MobileAddAccountModal({ isOpen, onClose, onSuccess }) {
     const { data, error: dbError } = await createAccount({
       name: name.trim(),
       type,
-      balance: Number(balance) || 0,
+      balance: 0,
       icon,
       monthlyBudget: Number(monthlyBudget) || 0,
     });
@@ -43,7 +42,6 @@ function MobileAddAccountModal({ isOpen, onClose, onSuccess }) {
     // Reset fields
     setName("");
     setType("Checking");
-    setBalance("");
     setIcon("💳");
     setMonthlyBudget("");
 
@@ -119,23 +117,6 @@ function MobileAddAccountModal({ isOpen, onClose, onSuccess }) {
                 </option>
               ))}
             </select>
-          </div>
-
-          {/* Starting Balance */}
-          <div className="m-field">
-            <label className="m-field-label">Opening Balance (₹)</label>
-            <div className="m-amount-wrap">
-              <span className="m-amount-currency">₹</span>
-              <input
-                type="number"
-                inputMode="decimal"
-                className="m-amount-input"
-                placeholder="0.00"
-                value={balance}
-                step="any"
-                onChange={(e) => setBalance(e.target.value)}
-              />
-            </div>
           </div>
 
           {/* Monthly Spending Cap (Optional) */}
